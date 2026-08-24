@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://factum.pyragogy.org",
+  site: "https://factum-landing.pyragogy.org",
   output: "static",
   integrations: [],
   vite: {
