@@ -1,0 +1,156 @@
+---
+// === Index — Landing page dual-core Factum & factum-fic ===
+// Layout: Navbar → HeroSplit → Pipeline → Flow → MetricCard → Features →
+//          Privacy → Pricing → Footer
+
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import HeroSplit from "../components/HeroSplit.astro";
+import PipelineDiagram from "../components/PipelineDiagram.astro";
+import FlowDiagram from "../components/FlowDiagram.astro";
+import MetricCard from "../components/MetricCard.astro";
+import PrivacySection from "../components/PrivacySection.astro";
+import PricingTable from "../components/PricingTable.astro";
+
+import {
+  curlSnippet,
+  cliHelpSnippet,
+  cliUsageSnippet,
+} from "../data/snippets";
+import {
+  factumApiTiers,
+  factumFicTiers,
+  metrics,
+  factumApiFeatures,
+  factumFicFeatures,
+} from "../data/pricing";
+---
+
+<Base
+  title="Factum — AI Document Parser & factum-fic CLI per forfettari"
+  description="Parsing e analisi logica per agenti IA. Gestione contabile forfettari via CLI. Zero compromessi, zero retention, zero cazzate."
+>
+  <Navbar />
+
+  <!-- ═══ HERO ═══ -->
+  <HeroSplit
+    curlSnippet={curlSnippet}
+    cliSnippet={cliHelpSnippet}
+    cliUsageSnippet={cliUsageSnippet}
+  />
+
+  <!-- ═══ PIPELINE ═══ -->
+  <PipelineDiagram />
+
+  <!-- ═══ FLOW ═══ -->
+  <FlowDiagram />
+
+  <!-- ═══ METRICS ═══ -->
+  <MetricCard metrics={metrics} />
+
+  <!-- ═══ FEATURES GRID ═══ -->
+  <section class="relative border-t border-white/5 py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto mb-14 max-w-2xl text-center">
+        <span class="mb-4 inline-block text-xs font-medium uppercase tracking-[0.2em] text-factum-400">Dettaglio tecnico</span>
+        <h2 class="text-2xl font-bold text-zinc-100 sm:text-3xl">Cosa c'è dentro</h2>
+        <p class="mt-3 text-sm leading-relaxed text-zinc-500">
+          Feature e specifiche reali dai codebase. Niente marketing — solo ciò che è stato costruito e testato.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-2">
+        <!-- Factum API features -->
+        <div>
+          <div class="mb-4 flex items-center gap-2">
+            <span class="flex h-5 w-5 items-center justify-center rounded bg-factum-500/10 text-[10px] font-bold text-factum-400">A</span>
+            <h3 class="text-sm font-semibold text-zinc-100">Factum API</h3>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {factumApiFeatures.map((f, i) => (
+              <div
+                class="animate-fade-up rounded-xl border border-white/5 bg-deep-800/20 p-4 transition-all duration-300 hover:border-factum-500/15 hover:bg-deep-800/40"
+                style={`animation-delay: ${i * 0.05}s`}
+              >
+                <span class="mb-2 block text-lg">{f.icon}</span>
+                <h4 class="mb-1 text-sm font-semibold text-zinc-100">{f.title}</h4>
+                <p class="text-xs leading-relaxed text-zinc-500">{f.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- factum-fic features -->
+        <div>
+          <div class="mb-4 flex items-center gap-2">
+            <span class="flex h-5 w-5 items-center justify-center rounded bg-factum-500/10 text-[10px] font-bold text-factum-400">F</span>
+            <h3 class="text-sm font-semibold text-zinc-100">factum-fic</h3>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {factumFicFeatures.map((f, i) => (
+              <div
+                class="animate-fade-up rounded-xl border border-white/5 bg-deep-800/20 p-4 transition-all duration-300 hover:border-factum-500/15 hover:bg-deep-800/40"
+                style={`animation-delay: ${i * 0.05}s`}
+              >
+                <span class="mb-2 block text-lg">{f.icon}</span>
+                <h4 class="mb-1 text-sm font-semibold text-zinc-100">{f.title}</h4>
+                <p class="text-xs leading-relaxed text-zinc-500">{f.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRIVACY ═══ -->
+  <PrivacySection />
+
+  <!-- ═══ PRICING ═══ -->
+  <PricingTable apiTiers={factumApiTiers} ficTiers={factumFicTiers} />
+
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="relative border-t border-white/5 py-20">
+    <div class="pointer-events-none absolute inset-0 bg-grid-subtle opacity-20" aria-hidden="true" />
+    <div class="relative mx-auto max-w-3xl px-6 text-center lg:px-8">
+      <h2 class="text-2xl font-bold text-zinc-100 sm:text-3xl">
+        Provare costa zero secondi
+      </h2>
+      <p class="mt-3 text-sm text-zinc-500">
+        Chiave API gratuita subito. CLI installata in 30 secondi.
+        <br class="hidden sm:inline" />
+        Se non funziona, non hai perso niente. Se funziona, ti cambia la giornata.
+      </p>
+
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333"
+          class="inline-flex items-center gap-2 rounded-xl bg-factum-500 px-6 py-3 text-sm font-semibold text-deep-900 transition-all hover:bg-factum-400 hover:shadow-lg hover:shadow-factum-500/25"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/>
+          </svg>
+          Ottieni API Key gratuita
+        </a>
+        <button
+          class="inline-flex items-center gap-2 rounded-xl border border-white/10 px-6 py-3 text-sm font-medium text-zinc-300 transition-all hover:border-factum-500/30 hover:text-factum-300"
+          @click="
+            navigator.clipboard.writeText('pipx install git+https://github.com/FTG-003/factum-fic');
+            $el.innerHTML = '✅ Comando copiato! Apri il terminale e incolla';
+            setTimeout(() => $el.innerHTML = '📋 Copia comando di installazione', 2500);
+          "
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+          </svg>
+          <span>📋 Copia comando installazione</span>
+        </button>
+      </div>
+
+      <p class="mt-6 text-xs text-zinc-600">
+        Open source (AGPL-3.0) · <a href="https://github.com/FTG-003/factum-fic" class="underline hover:text-zinc-400">GitHub</a> ·
+        <a href="https://docs.factum.pyragogy.org" class="underline hover:text-zinc-400">Documentazione</a>
+      </p>
+    </div>
+  </section>
+</Base>

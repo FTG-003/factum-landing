@@ -1,0 +1,153 @@
+/* === TAILWIND v4 — Factum Pyragogy Design System === */
+
+@import "tailwindcss";
+
+/* ── Custom theme tokens ── */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-factum-50: #e6fffa;
+  --color-factum-100: #b3ffef;
+  --color-factum-200: #80ffe3;
+  --color-factum-300: #4dffd8;
+  --color-factum-400: #1affcd;
+  --color-factum-500: #00e6b3;
+  --color-factum-600: #00b38a;
+  --color-factum-700: #008062;
+  --color-factum-800: #004d3a;
+  --color-factum-900: #001a13;
+
+  --color-deep-50: #f5f5f5;
+  --color-deep-100: #e0e0e0;
+  --color-deep-200: #b0b0b0;
+  --color-deep-300: #808080;
+  --color-deep-400: #606060;
+  --color-deep-500: #404040;
+  --color-deep-600: #2a2a2a;
+  --color-deep-700: #1a1a1a;
+  --color-deep-800: #101010;
+  --color-deep-900: #0a0a0a;
+
+  --animate-fade-in: fade-in 0.7s ease-out forwards;
+  --animate-fade-up: fade-up 0.7s ease-out forwards;
+  --animate-slide-in: slide-in 0.5s ease-out forwards;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-scroll-indicator: scroll-indicator 2s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 8px rgba(0, 230, 179, 0.15); }
+  to { box-shadow: 0 0 24px rgba(0, 230, 179, 0.35); }
+}
+
+@keyframes scroll-indicator {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(6px); opacity: 0.4; }
+}
+
+/* ── Scroll-driven reveal (baseline) ── */
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  animation: reveal 0.7s ease-out both;
+}
+
+.reveal-delay-1 { animation-delay: 0.1s; }
+.reveal-delay-2 { animation-delay: 0.2s; }
+.reveal-delay-3 { animation-delay: 0.3s; }
+.reveal-delay-4 { animation-delay: 0.4s; }
+.reveal-delay-5 { animation-delay: 0.5s; }
+
+/* ── Glassmorphism utilities ── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Grid background pattern ── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.bg-grid-subtle {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ── Terminal scrollbar ── */
+.terminal-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.terminal-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.terminal-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+.terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #00e6b3, #4dffd8, #80ffe3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Smooth scroll ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(0, 230, 179, 0.25);
+  color: #fff;
+}
+
+/* ── Focus ring ── */
+*:focus-visible {
+  outline: 2px solid rgba(0, 230, 179, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Print ── */
+@media print {
+  .no-print { display: none; }
+  body { background: #fff !important; color: #000 !important; }
+}

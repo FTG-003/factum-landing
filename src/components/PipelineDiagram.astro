@@ -1,0 +1,136 @@
+---
+// === PipelineDiagram — Factum API pipeline visualizzata ===
+// Diagramma a flusso: Detect → Extract → PII → LLM Cascade → Gate → Envelope
+// Con metriche reali dai codebase.
+
+export interface Props {
+  slim?: boolean;
+}
+const { slim = false } = Astro.props;
+
+const stages = [
+  {
+    name: "Detect",
+    desc: "classifica documento",
+    detail: "FatturaPA · PDF · F24 · generico",
+    color: "from-factum-500/20 to-factum-500/5",
+    border: "border-factum-500/20",
+    metric: "Sniff MIME + SHA-256",
+  },
+  {
+    name: "Extract",
+    desc: "testo vettoriale",
+    detail: "PyMuPDF · 12s timeout",
+    color: "from-factum-500/20 to-factum-500/5",
+    border: "border-factum-500/20",
+    metric: "≤ 12s",
+  },
+  {
+    name: "PII Sidecar",
+    desc: "pseudonimizzazione",
+    detail: "Rizzo 0.3B · fail-closed",
+    color: "from-amber-500/20 to-transparent",
+    border: "border-amber-500/20",
+    metric: "ZDR",
+  },
+  {
+    name: "LLM Cascade",
+    desc: "DeepSeek → Claude",
+    detail: "Routing + fallback + cost guard",
+    color: "from-factum-500/20 to-factum-500/5",
+    border: "border-factum-500/20",
+    metric: "€0 · free provider",
+  },
+  {
+    name: "Quality Gate",
+    desc: "validazione struttura",
+    detail: "Confidence · HITL triage",
+    color: "from-amber-500/20 to-transparent",
+    border: "border-amber-500/20",
+    metric: "97%+",
+  },
+  {
+    name: "Envelope",
+    desc: "output normalizzato",
+    detail: "v2 · document_type · payload",
+    color: "from-factum-500/20 to-factum-500/5",
+    border: "border-factum-500/20",
+    metric: "JSON strutturato",
+  },
+];
+---
+
+<section class="py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="mx-auto mb-14 max-w-2xl text-center">
+      <span class="mb-4 inline-block text-xs font-medium uppercase tracking-[0.2em] text-factum-400">Architettura</span>
+      <h2 class="text-2xl font-bold text-zinc-100 sm:text-3xl">
+        Pipeline a 6 stadi
+      </h2>
+      <p class="mt-3 text-sm leading-relaxed text-zinc-500">
+        Ogni documento passa attraverso una pipeline modulare. Ogni stadio ha metriche,
+        timeout e fail-closed. Nessun dato esce dal perimetro senza pseudonimizzazione.
+      </p>
+    </div>
+
+    <!-- Fast-path highlight banner -->
+    <div class="mx-auto mb-10 max-w-3xl rounded-xl border border-factum-500/10 bg-factum-500/5 p-4 text-center">
+      <p class="text-sm text-zinc-400">
+        <span class="font-semibold text-factum-400">⚡ Fast-path deterministico:</span>{" "}
+        per XML FatturaPA la pipeline si riduce a Detect → Envelope.{" "}
+        <span class="font-mono text-factum-300">41 ms · €0 · confidence 1.0</span>
+      </p>
+    </div>
+
+    <!-- Pipeline stages -->
+    <div class="relative">
+      <!-- Connection line (desktop) -->
+      <div class="absolute left-0 right-0 top-1/2 hidden h-px bg-gradient-to-r from-factum-500/10 via-factum-500/20 to-factum-500/10 md:block" aria-hidden="true" />
+
+      <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        {stages.map((stage, i) => (
+          <div
+            class="group relative animate-fade-up rounded-xl border bg-gradient-to-b p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            class:list={{
+              [stage.border]: true,
+              [stage.color]: true,
+              "shadow-factum-500/10": stage.border.includes("factum"),
+              "shadow-amber-500/10": stage.border.includes("amber"),
+            }}
+            style={`animation-delay: ${i * 0.07}s`}
+          >
+            <!-- Stage number -->
+            <div class="mb-2 flex items-center gap-2">
+              <span
+                class="flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold"
+                class:list={{
+                  "bg-factum-500/20 text-factum-400": stage.border.includes("factum"),
+                  "bg-amber-500/20 text-amber-400": stage.border.includes("amber"),
+                }}
+              >
+                {i + 1}
+              </span>
+              <span class="text-xs font-semibold text-zinc-100">{stage.name}</span>
+            </div>
+
+            <p class="text-[11px] leading-relaxed text-zinc-500">{stage.detail}</p>
+
+            <!-- Metric tag -->
+            <div class="mt-3">
+              <span
+                class="inline-block rounded px-1.5 py-0.5 text-[10px] font-mono"
+                class:list={{
+                  "bg-factum-500/10 text-factum-400": stage.border.includes("factum"),
+                  "bg-amber-500/10 text-amber-400": stage.border.includes("amber"),
+                }}
+              >
+                {stage.metric}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

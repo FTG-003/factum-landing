@@ -1,0 +1,137 @@
+---
+// === FlowDiagram — factum-fic flow: inbox → parse → FIC → SDI ===
+// Visualizzazione a gradoni con metriche reali.
+
+export interface Props {
+  slim?: boolean;
+}
+const { slim = false } = Astro.props;
+
+const steps = [
+  {
+    icon: "📥",
+    title: "Drop",
+    desc: "Trascini il PDF/XML in da_elaborare/",
+    detail: "SHA-256 dedup · temp file filter · watchdog mode",
+    metric: "File immutabile",
+  },
+  {
+    icon: "🔍",
+    title: "Extract",
+    desc: "Testo estratto in locale (pypdf)",
+    detail: "XML: 100% locale · PDF: testo via pypdf",
+    metric: "Zero retention",
+  },
+  {
+    icon: "⚙️",
+    title: "Parse",
+    desc: "Factum Parse API analizza",
+    detail: "Fast-path XML 41ms · LLM per PDF",
+    metric: "342+ test",
+  },
+  {
+    icon: "🗺️",
+    title: "Map",
+    desc: "Mapper fiscale + conversione valuta",
+    detail: "Categorie FIC · reverse charge · USD→EUR",
+    metric: "TD17/18/19",
+  },
+  {
+    icon: "☁️",
+    title: "FIC",
+    desc: "Registrazione su Fatture in Cloud",
+    detail: "Create expense + allegato PDF",
+    metric: "208 test",
+  },
+  {
+    icon: "📄",
+    title: "SDI",
+    desc: "Autofattura in bozza (se estera)",
+    detail: "TD17 extra-UE · TD18 UE con P.IVA · TD19 UE senza",
+    metric: "Pronta da inviare",
+  },
+];
+---
+
+<section class="py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto mb-14 max-w-2xl text-center">
+      <span class="mb-4 inline-block text-xs font-medium uppercase tracking-[0.2em] text-factum-400">Workflow</span>
+      <h2 class="text-2xl font-bold text-zinc-100 sm:text-3xl">
+        Dalla fattura alla registrazione
+      </h2>
+      <p class="mt-3 text-sm leading-relaxed text-zinc-500">
+        Trascini il file. Factum-FIC fa tutto da solo. Le spese sono su Fatture in Cloud,
+        le autofatture SDI sono in bozza pronte da controllare e inviare.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="relative mx-auto max-w-4xl">
+      <!-- Vertical connector -->
+      <div class="absolute bottom-0 left-8 top-0 hidden w-px bg-gradient-to-b from-factum-500/20 via-factum-500/10 to-transparent md:block" aria-hidden="true" />
+
+      <div class="space-y-6">
+        {steps.map((step, i) => (
+          <div
+            class="group relative animate-fade-up rounded-xl border border-white/5 bg-deep-800/30 p-5 transition-all duration-300 hover:border-factum-500/15 hover:bg-deep-800/50 md:flex md:items-start md:gap-6 md:p-6"
+            style={`animation-delay: ${i * 0.08}s`}
+          >
+            <!-- Icon + step number -->
+            <div class="mb-3 flex items-center gap-3 md:mb-0 md:flex-col md:items-center md:pt-1">
+              <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-deep-700/60 text-lg md:h-12 md:w-12 md:text-xl">
+                {step.icon}
+              </span>
+              <span class="flex h-6 w-6 items-center justify-center rounded-full bg-factum-500/10 text-xs font-bold text-factum-400 md:hidden">
+                {i + 1}
+              </span>
+            </div>
+
+            <!-- Content -->
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="text-base font-semibold text-zinc-100">{step.title}</h3>
+                <span class="hidden shrink-0 rounded bg-white/5 px-2 py-0.5 text-[10px] font-mono text-zinc-500 md:inline-block">{step.metric}</span>
+              </div>
+              <p class="mt-1 text-sm text-zinc-300">{step.desc}</p>
+              <p class="mt-0.5 text-xs text-zinc-600">{step.detail}</p>
+            </div>
+
+            <!-- Metric mobile -->
+            <span class="mt-2 inline-block rounded bg-white/5 px-2 py-0.5 text-[10px] font-mono text-zinc-500 md:hidden">{step.metric}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- Result badge -->
+      <div class="mx-auto mt-8 max-w-lg animate-fade-up rounded-xl border border-factum-500/10 bg-factum-500/5 p-4 text-center" style="animation-delay: 0.6s">
+        <p class="text-sm text-zinc-300">
+          <span class="text-factum-400">✅</span>{" "}
+          File spostati in <span class="font-mono text-xs text-zinc-400">archiviate/YYYY/MM/</span>
+        </p>
+        <p class="mt-1 text-xs text-zinc-600">Coda SQLite persistente · Idempotenza SHA-256 · Recupero errori</p>
+      </div>
+    </div>
+
+    <!-- CLI comandi grid -->
+    <div class="mx-auto mt-14 max-w-3xl">
+      <h3 class="mb-5 text-center text-sm font-semibold text-zinc-400">Comandi principali (tutti in 🇮🇹)</h3>
+      <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        {[
+          { cmd: "setup", alias: "configura", desc: "Configurazione guidata" },
+          { cmd: "sync", alias: "elabora", desc: "Elabora tutti i file" },
+          { cmd: "watch", alias: "auto", desc: "Elaborazione automatica" },
+          { cmd: "status", alias: "stato", desc: "Dashboard operativo" },
+          { cmd: "ricarica", alias: "buy-credits", desc: "Acquista 100 PDF" },
+          { cmd: "riprova-autofatture", alias: "retry", desc: "Recupera fallite" },
+        ].map((c) => (
+          <div class="animate-fade-up rounded-lg border border-white/5 bg-deep-800/30 p-3 text-center transition-colors hover:border-white/10" style={`animation-delay: ${0.6 + Math.random() * 0.2}s`}>
+            <div class="font-mono text-sm text-factum-400">factum-fic {c.cmd}</div>
+            <div class="mt-0.5 text-[10px] text-zinc-600">{c.desc}</div>
+            <div class="mt-0.5 text-[10px] text-zinc-600">alias: <span class="font-mono text-zinc-500">{c.alias}</span></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

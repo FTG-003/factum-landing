@@ -1,0 +1,120 @@
+---
+// === Base Layout — Factum Pyragogy ===
+// Dark mode nativo, font Google preloadati, reset, footer.
+
+import "../styles/global.css";
+
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Factum — AI Document Parser & factum-fic CLI",
+  description = "Parsing e analisi logica per agenti IA. Gestione contabile forfettari via CLI. Zero compromessi.",
+  ogImage = "/og-image.png",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="it" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Font preload: JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+
+    <!-- Alpine.js (leggero per interattività) -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"
+      integrity="sha384-w9A9JpMpLxkFpzHk3GgqZAnGz0+7T9e7C5Bx0C3yqB1J6d9h0z6tCq8Yg5F0z6"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body
+    class="min-h-screen bg-deep-900 text-zinc-100 font-sans antialiased selection:bg-factum-500/25 selection:text-white"
+  >
+    <slot />
+
+    <!-- Footer globale -->
+    <footer class="border-t border-white/5 bg-deep-800/50">
+      <div class="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <!-- Factum -->
+          <div>
+            <h4 class="mb-3 text-sm font-semibold uppercase tracking-wider text-factum-400">Factum</h4>
+            <ul class="space-y-2 text-sm text-zinc-400">
+              <li><a href="https://docs.factum.pyragogy.org" class="transition-colors hover:text-factum-300">Documentazione</a></li>
+              <li><a href="https://api.factum.pyragogy.org/docs" class="transition-colors hover:text-factum-300">API Reference</a></li>
+              <li><a href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333" class="transition-colors hover:text-factum-300">Prezzi</a></li>
+            </ul>
+          </div>
+
+          <!-- factum-fic -->
+          <div>
+            <h4 class="mb-3 text-sm font-semibold uppercase tracking-wider text-factum-400">factum-fic</h4>
+            <ul class="space-y-2 text-sm text-zinc-400">
+              <li><a href="https://github.com/FTG-003/factum-fic" class="transition-colors hover:text-factum-300">GitHub</a></li>
+              <li><a href="https://github.com/FTG-003/factum-fic/releases" class="transition-colors hover:text-factum-300">Release</a></li>
+              <li><a href="https://github.com/FTG-003/factum-fic/issues" class="transition-colors hover:text-factum-300">Segnala bug</a></li>
+            </ul>
+          </div>
+
+          <!-- Community -->
+          <div>
+            <h4 class="mb-3 text-sm font-semibold uppercase tracking-wider text-factum-400">Community</h4>
+            <ul class="space-y-2 text-sm text-zinc-400">
+              <li><a href="https://github.com/FTG-003" class="transition-colors hover:text-factum-300">GitHub FTG-003</a></li>
+              <li><a href="https://github.com/FTG-003/factum-fic/blob/main/CONTRIBUTING.md" class="transition-colors hover:text-factum-300">Contribuire</a></li>
+              <li><a href="https://github.com/FTG-003/factum-fic/blob/main/CODE_OF_CONDUCT.md" class="transition-colors hover:text-factum-300">Codice di condotta</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal -->
+          <div>
+            <h4 class="mb-3 text-sm font-semibold uppercase tracking-wider text-factum-400">Legale</h4>
+            <ul class="space-y-2 text-sm text-zinc-400">
+              <li><a href="https://github.com/FTG-003/factum-fic/blob/main/LICENSE" class="transition-colors hover:text-factum-300">AGPL-3.0</a></li>
+              <li><a href="https://docs.factum.pyragogy.org/privacy" class="transition-colors hover:text-factum-300">Privacy</a></li>
+              <li><a href="mailto:info@pyragogy.org" class="transition-colors hover:text-factum-300">info@pyragogy.org</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-12 border-t border-white/5 pt-8 text-center text-xs text-zinc-600">
+          <p>
+            Fatto con
+            <svg class="inline-block h-3 w-3 text-factum-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            per chi ha una Partita IVA e ha di meglio da fare che ricopiare fatture a mano.
+          </p>
+          <p class="mt-2">Non è consulenza fiscale. Verifica sempre col tuo commercialista.</p>
+          <p class="mt-2">&copy; {new Date().getFullYear()} Pyragogy. Tutti i diritti riservati.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
