@@ -1,220 +1,140 @@
 ---
-// === HeroSplit — Dual-Core: Factum API (sx) vs factum-fic CLI (dx) ===
-// Dark industrial-tech, snippet reali dai codebase, metriche e CTA.
+// === HeroSplit (v2) — Dual-Core: Factum API (sx) vs factum-fic (dx) ===
+// Stile industrial-tech, tab interattivi per snippet, zero AI-slop decorations
 
 import CodeBlock from "./CodeBlock.astro";
 
 export interface Props {
   curlSnippet: string;
-  cliSnippet: string;
+  pythonSnippet: string;
+  responseSnippet: string;
+  cliHelpSnippet: string;
   cliUsageSnippet: string;
+  xmlSnippet: string;
 }
-const { curlSnippet, cliSnippet, cliUsageSnippet } = Astro.props;
+const { curlSnippet, pythonSnippet, responseSnippet, cliHelpSnippet, cliUsageSnippet, xmlSnippet } = Astro.props;
+
+const apiTabs = ["curl", "python", "response"];
+const cliTabs = ["help", "quickstart", "xml"];
 ---
 
-<section class="relative min-h-[calc(100vh-4rem)] pt-24 md:pt-32">
-  <!-- Background grid pattern -->
-  <div class="pointer-events-none absolute inset-0 bg-grid-subtle" aria-hidden="true" />
+<section class="relative min-h-[calc(100vh-4rem)] pt-28 md:pt-36">
+  <div class="pointer-events-none absolute inset-0 bg-geo opacity-30" aria-hidden="true" />
 
-  <!-- Gradient overlays -->
-  <div class="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2">
-    <div class="h-[600px] w-[600px] rounded-full bg-factum-500/3 blur-[120px]" aria-hidden="true" />
-  </div>
-
-  <div class="relative mx-auto max-w-7xl px-6 pb-16 lg:px-8">
-    <!-- Eyebrow -->
-    <div class="mb-8 flex animate-fade-in items-center justify-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
-      <span class="inline-block h-px w-8 bg-zinc-700" />
-      <span>Pyragogy &mdash; infrastruttura per agenti autonomi</span>
-      <span class="inline-block h-px w-8 bg-zinc-700" />
-    </div>
-
+  <div class="relative mx-auto max-w-7xl px-6 pb-20 lg:px-8">
     <!-- Headline -->
-    <div class="mx-auto mb-12 max-w-3xl text-center">
+    <div class="mx-auto mb-14 max-w-4xl text-center">
+      <span class="mb-4 inline-block font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-zinc-600">
+        Factum · Pyragogy
+      </span>
       <h1 class="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
         <span class="text-zinc-100">Parsing che capisce.</span>
         <br />
-        <span class="gradient-text">Contabilità che non rompe.</span>
+        <span class="text-factum-400">Contabilità che non rompe.</span>
       </h1>
-      <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-500 sm:text-lg">
-        Due prodotti. Un'unica infrastruttura. <span class="text-zinc-400">Factum</span> per dare
-        intelligenza documentale ai tuoi agenti AI. <span class="text-zinc-400">factum-fic</span>
-        per liberare i forfettari dalla burocrazia delle fatture estere.
+      <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-500">
+        <span class="text-zinc-400">Factum API</span> per dare intelligenza documentale ai tuoi
+        agenti AI. <span class="text-zinc-400">factum-fic</span> per liberare i forfettari dalla
+        burocrazia delle fatture estere.
       </p>
-
-      <!-- Quick CTA pills -->
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a
-          href="#api"
-          class="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2 text-sm text-zinc-300 transition-all hover:border-factum-500/30 hover:text-factum-300 glass-hover"
-        >
-          <span class="flex h-5 w-5 items-center justify-center rounded bg-factum-500/10 text-[10px] font-bold text-factum-400">A</span>
-          Factum API
-        </a>
-        <a
-          href="#cli"
-          class="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2 text-sm text-zinc-300 transition-all hover:border-factum-500/30 hover:text-factum-300 glass-hover"
-        >
-          <span class="flex h-5 w-5 items-center justify-center rounded bg-factum-500/10 text-[10px] font-bold text-factum-400">F</span>
-          factum-fic CLI
-        </a>
-        <a
-          href="https://github.com/FTG-003/factum-fic"
-          class="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2 text-sm text-zinc-300 transition-all hover:border-factum-500/30 hover:text-factum-300 glass-hover"
-        >
-          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          AGPL-3.0 / GitHub
-        </a>
-      </div>
     </div>
 
     <!-- Dual columns -->
-    <div class="grid gap-6 md:grid-cols-2 md:gap-8">
-      <!-- ── COLONNA SX: FACTUM API ── -->
+    <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
+      <!-- ── SX: FACTUM API ── -->
       <div
-        id="api"
-        class="group relative animate-fade-up rounded-2xl border border-white/5 bg-deep-800/40 p-6 transition-all duration-500 hover:border-factum-500/20 hover:bg-deep-800/60 sm:p-8"
-        style="animation-delay: 0.1s"
+        class="animate-fade-up rounded-xl border border-zinc-800 bg-[#0d0d0d] p-6 transition-all duration-300 sm:p-7"
+        style="animation-delay: 0.05s"
+        x-data="{ apiTab: 'curl' }"
       >
-        <!-- Glow -->
-        <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true">
-          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-factum-500/5 via-transparent to-transparent" />
+        <div class="mb-5 flex items-start justify-between">
+          <div>
+            <div class="mb-1.5 flex items-center gap-2">
+              <span class="flex h-5 w-5 items-center justify-center rounded border border-factum-400/30 text-[10px] font-bold text-factum-400 font-mono">A</span>
+              <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-factum-400">Factum API</span>
+            </div>
+            <h2 class="text-lg font-bold text-zinc-100 sm:text-xl">AI Document Parser</h2>
+            <p class="text-sm text-zinc-500">FatturaPA &middot; PDF &middot; F24 &middot; fatture SaaS</p>
+          </div>
+          <div class="shrink-0 text-right">
+            <div class="text-xl font-bold tracking-tight text-factum-400 font-mono">41 ms</div>
+            <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-600">fast-path</div>
+          </div>
         </div>
 
-        <div class="relative">
-          <!-- Header -->
-          <div class="mb-5 flex items-start justify-between">
-            <div>
-              <div class="mb-2 flex items-center gap-2">
-                <span class="flex h-6 w-6 items-center justify-center rounded-md bg-factum-500/10 text-xs font-bold text-factum-400">A</span>
-                <span class="text-xs font-medium uppercase tracking-wider text-factum-400">Factum API</span>
-              </div>
-              <h2 class="text-xl font-bold text-zinc-100 sm:text-2xl">AI Document Parser</h2>
-              <p class="mt-1 text-sm text-zinc-500">
-                FatturaPA &middot; PDF &middot; F24 &middot; fatture SaaS
-              </p>
-            </div>
-            <!-- Metric badge -->
-            <div class="shrink-0 rounded-lg border border-factum-500/15 bg-factum-500/5 px-3 py-1.5 text-right">
-              <div class="text-lg font-bold tracking-tight text-factum-400">41 ms</div>
-              <div class="text-[10px] uppercase tracking-wider text-zinc-500">fast-path</div>
-            </div>
-          </div>
+        <!-- Tab switcher -->
+        <div class="mb-3 flex gap-1 rounded-lg border border-zinc-800 bg-[#080808] p-0.5">
+          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="apiTab === 'curl' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="apiTab = 'curl'">cURL</button>
+          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="apiTab === 'python' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="apiTab = 'python'">Python</button>
+          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="apiTab === 'response' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="apiTab = 'response'">JSON</button>
+        </div>
 
-          <!-- Code snippet: cURL -->
-          <CodeBlock code={curlSnippet} lang="bash" title="curl" />
+        <div x-show="apiTab === 'curl'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <CodeBlock code={curlSnippet} lang="bash" title="POST /v1/parse" />
+        </div>
+        <div x-show="apiTab === 'python'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <CodeBlock code={pythonSnippet} lang="python" title="httpx async" />
+        </div>
+        <div x-show="apiTab === 'response'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <CodeBlock code={responseSnippet} lang="json" title="Envelope v2" />
+        </div>
 
-          <!-- Tags row -->
-          <div class="mt-4 flex flex-wrap gap-2">
-            <span class="rounded-md bg-white/5 px-2.5 py-1 text-xs text-zinc-400">Fast-path $0</span>
-            <span class="rounded-md bg-white/5 px-2.5 py-1 text-xs text-zinc-400">342+ test</span>
-            <span class="rounded-md bg-white/5 px-2.5 py-1 text-xs text-zinc-400">ZDR privacy</span>
-            <span class="rounded-md bg-white/5 px-2.5 py-1 text-xs text-zinc-400">LLM Cascade</span>
-          </div>
-
-          <!-- CTA -->
-          <div class="mt-6 flex items-center gap-3">
-            <a
-              href="https://docs.factum.pyragogy.org"
-              class="inline-flex items-center gap-1.5 text-sm font-medium text-factum-400 transition-colors hover:text-factum-300"
-            >
-              Documentazione API →
-            </a>
-            <a
-              href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333"
-              class="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3.5 py-1.5 text-sm text-zinc-300 transition-all hover:border-factum-500/30 hover:text-factum-300 glass-hover"
-            >
-              Free API Key
-            </a>
-          </div>
+        <div class="mt-4 flex items-center gap-3">
+          <a href="https://docs.factum.pyragogy.org" class="font-mono text-[13px] font-medium text-factum-400 transition-colors hover:text-factum-300">Documentazione &rarr;</a>
+          <a href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333" class="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 px-3.5 py-1.5 font-mono text-[13px] text-zinc-300 transition-all hover:border-zinc-600 hover:text-zinc-100">Free API Key</a>
         </div>
       </div>
 
-      <!-- ── COLONNA DX: FACTUM-FIC CLI ── -->
+      <!-- ── DX: FACTUM-FIC CLI ── -->
       <div
-        id="cli"
-        class="group relative animate-fade-up rounded-2xl border border-white/5 bg-deep-800/40 p-6 transition-all duration-500 hover:border-factum-500/20 hover:bg-deep-800/60 sm:p-8"
-        style="animation-delay: 0.2s"
+        class="animate-fade-up rounded-xl border border-zinc-800 bg-[#0d0d0d] p-6 transition-all duration-300 sm:p-7"
+        style="animation-delay: 0.12s"
+        x-data="{ cliTab: 'help' }"
       >
-        <!-- Glow -->
-        <div class="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true">
-          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-factum-500/5 via-transparent to-transparent" />
+        <div class="mb-5 flex items-start justify-between">
+          <div>
+            <div class="mb-1.5 flex items-center gap-2">
+              <span class="flex h-5 w-5 items-center justify-center rounded border border-factum-400/30 text-[10px] font-bold text-factum-400 font-mono">F</span>
+              <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-factum-400">factum-fic</span>
+            </div>
+            <h2 class="text-lg font-bold text-zinc-100 sm:text-xl">CLI Contabile Forfettari</h2>
+            <p class="text-sm text-zinc-500">Open Source &middot; AGPL-3.0 &middot; 208 test</p>
+          </div>
+          <div class="shrink-0 text-right">
+            <div class="text-xl font-bold tracking-tight text-factum-400 font-mono">&euro;0</div>
+            <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-600">10 PDF/mese</div>
+          </div>
         </div>
 
-        <div class="relative">
-          <!-- Header -->
-          <div class="mb-5 flex items-start justify-between">
-            <div>
-              <div class="mb-2 flex items-center gap-2">
-                <span class="flex h-6 w-6 items-center justify-center rounded-md bg-factum-500/10 text-xs font-bold text-factum-400">F</span>
-                <span class="text-xs font-medium uppercase tracking-wider text-factum-400">factum-fic</span>
-              </div>
-              <h2 class="text-xl font-bold text-zinc-100 sm:text-2xl">CLI Contabile Forfettari</h2>
-              <p class="mt-1 text-sm text-zinc-500">
-                Open Source &middot; AGPL-3.0 &middot; 208 test
-              </p>
-            </div>
-            <!-- Metric badge -->
-            <div class="shrink-0 rounded-lg border border-factum-500/15 bg-factum-500/5 px-3 py-1.5 text-right">
-              <div class="text-lg font-bold tracking-tight text-factum-400">€0</div>
-              <div class="text-[10px] uppercase tracking-wider text-zinc-500">10 PDF/mese</div>
-            </div>
-          </div>
+        <!-- Tab switcher -->
+        <div class="mb-3 flex gap-1 rounded-lg border border-zinc-800 bg-[#080808] p-0.5">
+          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="cliTab === 'help' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="cliTab = 'help'">--help</button>
+          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="cliTab === 'quickstart' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="cliTab = 'quickstart'">Quickstart</button>
+          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="cliTab === 'xml' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="cliTab = 'xml'">XML SDI</button>
+        </div>
 
-          <!-- Terminal: CLI help -->
-          <CodeBlock code={cliSnippet} lang="bash" title="$ factum-fic --help" />
+        <div x-show="cliTab === 'help'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <CodeBlock code={cliHelpSnippet} lang="bash" title="$ factum-fic --help" />
+        </div>
+        <div x-show="cliTab === 'quickstart'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <CodeBlock code={cliUsageSnippet} lang="bash" title="Quickstart" />
+        </div>
+        <div x-show="cliTab === 'xml'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+          <CodeBlock code={xmlSnippet} lang="xml" title="FatturaPA XML" />
+        </div>
 
-          <!-- Tags row -->
-          <div class="mt-4 flex flex-wrap gap-2">
-            <span class="rounded-md bg-white/5 px-2.5 py-1 text-xs text-zinc-400">CLI in 🇮🇹</span>
-            <span class="rounded-md bg-white/5 px-2.5 py-1 text-xs text-zinc-400">TD17/18/19</span>
-            <span class="rounded-md bg-white/5 px-2.5 py-1 text-xs text-zinc-400">XML ∞ gratis</span>
-            <span class="rounded-md bg-white/5 px-2.5 py-1 text-xs text-zinc-400">Watch mode</span>
-          </div>
-
-          <!-- Install and CTA -->
-          <div class="mt-6 flex items-center gap-3">
-            <a
-              href="https://github.com/FTG-003/factum-fic"
-              class="inline-flex items-center gap-1.5 text-sm font-medium text-factum-400 transition-colors hover:text-factum-300"
-            >
-              GitHub Repo →
-            </a>
-            <button
-              id="install-btn"
-              class="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-factum-500/20 bg-factum-500/10 px-3.5 py-1.5 text-sm text-factum-300 transition-all hover:bg-factum-500/20"
-              @click="
-                navigator.clipboard.writeText('pipx install git+https://github.com/FTG-003/factum-fic');
-                $el.textContent = '✅ Copiato!';
-                setTimeout(() => $el.textContent = 'pipx install →', 2000);
-              "
-            >
-              pipx install →
-            </button>
-          </div>
+        <div class="mt-4 flex items-center gap-3">
+          <a href="https://github.com/FTG-003/factum-fic" class="font-mono text-[13px] font-medium text-factum-400 transition-colors hover:text-factum-300">GitHub &rarr;</a>
+          <button
+            class="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 px-3.5 py-1.5 font-mono text-[13px] text-zinc-300 transition-all hover:border-zinc-600 hover:text-zinc-100"
+            @click="
+              navigator.clipboard.writeText('pipx install git+https://github.com/FTG-003/factum-fic');
+              $el.textContent = '✅ Copiato!';
+              setTimeout(() => $el.textContent = 'pipx install &rarr;', 2000);
+            "
+          >pipx install &rarr;</button>
         </div>
       </div>
-    </div>
-
-    <!-- Quick usage row -->
-    <div
-      class="mx-auto mt-8 max-w-3xl animate-fade-up rounded-xl border border-white/5 bg-deep-800/20 p-5 sm:p-6"
-      style="animation-delay: 0.3s"
-    >
-      <div class="mb-3 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
-        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776"/>
-        </svg>
-        <span>In 3 minuti, senza essere programmatore</span>
-      </div>
-      <CodeBlock code={cliUsageSnippet} lang="bash" title="Quickstart" compact />
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="mt-16 flex animate-bounce justify-center">
-      <svg class="h-5 w-5 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
-      </svg>
     </div>
   </div>
 </section>

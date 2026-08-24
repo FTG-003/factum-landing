@@ -1,12 +1,13 @@
-/* === TAILWIND v4 — Factum Pyragogy Design System === */
+/* === TAILWIND v4 — Factum Pyragogy: Industrial-Tech === */
+/* dark-only · geometric · zero glassmorphism · zero AI-slop */
 
 @import "tailwindcss";
 
-/* ── Custom theme tokens ── */
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
+  /* brand: teal */
   --color-factum-50: #e6fffa;
   --color-factum-100: #b3ffef;
   --color-factum-200: #80ffe3;
@@ -18,6 +19,7 @@
   --color-factum-800: #004d3a;
   --color-factum-900: #001a13;
 
+  /* surfaces: absolute dark, no glass */
   --color-deep-50: #f5f5f5;
   --color-deep-100: #e0e0e0;
   --color-deep-200: #b0b0b0;
@@ -29,124 +31,51 @@
   --color-deep-800: #101010;
   --color-deep-900: #0a0a0a;
 
-  --animate-fade-in: fade-in 0.7s ease-out forwards;
-  --animate-fade-up: fade-up 0.7s ease-out forwards;
-  --animate-slide-in: slide-in 0.5s ease-out forwards;
-  --animate-glow: glow 2s ease-in-out infinite alternate;
-  --animate-scroll-indicator: scroll-indicator 2s ease-in-out infinite;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  /* animations */
+  --animate-fade-up: fade-up 0.6s ease-out forwards;
+  --animate-fade-in: fade-in 0.5s ease-out forwards;
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite alternate;
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slide-in {
-  from { opacity: 0; transform: translateX(-16px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes glow {
-  from { box-shadow: 0 0 8px rgba(0, 230, 179, 0.15); }
-  to { box-shadow: 0 0 24px rgba(0, 230, 179, 0.35); }
-}
-
-@keyframes scroll-indicator {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  50% { transform: translateY(6px); opacity: 0.4; }
-}
-
-/* ── Scroll-driven reveal (baseline) ── */
-@keyframes reveal {
   from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes glow-pulse {
+  from { box-shadow: 0 0 6px rgba(0, 230, 179, 0.08); }
+  to   { box-shadow: 0 0 20px rgba(0, 230, 179, 0.2); }
 }
 
-.reveal {
-  animation: reveal 0.7s ease-out both;
-}
-
-.reveal-delay-1 { animation-delay: 0.1s; }
-.reveal-delay-2 { animation-delay: 0.2s; }
-.reveal-delay-3 { animation-delay: 0.3s; }
-.reveal-delay-4 { animation-delay: 0.4s; }
-.reveal-delay-5 { animation-delay: 0.5s; }
-
-/* ── Glassmorphism utilities ── */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.glass-hover:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-/* ── Grid background pattern ── */
-.bg-grid {
+/* ── Geometric grid (industrial) ── */
+.bg-geo {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-.bg-grid-subtle {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 64px 64px;
+}
+.bg-geo-dense {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* ── Terminal scrollbar ── */
-.terminal-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-.terminal-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.terminal-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-}
-.terminal-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
+.terminal-scrollbar::-webkit-scrollbar { width: 5px; }
+.terminal-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.terminal-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 3px; }
+.terminal-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); }
 
-/* ── Gradient text ── */
-.gradient-text {
-  background: linear-gradient(135deg, #00e6b3, #4dffd8, #80ffe3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/* ── Misc ── */
+html { scroll-behavior: smooth; }
+::selection { background: rgba(0, 230, 179, 0.2); color: #fff; }
+*:focus-visible { outline: 2px solid rgba(0, 230, 179, 0.4); outline-offset: 2px; }
+[x-cloak] { display: none !important; }
 
-/* ── Smooth scroll ── */
-html {
-  scroll-behavior: smooth;
-}
-
-/* ── Selection ── */
-::selection {
-  background: rgba(0, 230, 179, 0.25);
-  color: #fff;
-}
-
-/* ── Focus ring ── */
-*:focus-visible {
-  outline: 2px solid rgba(0, 230, 179, 0.5);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* ── Print ── */
 @media print {
   .no-print { display: none; }
   body { background: #fff !important; color: #000 !important; }

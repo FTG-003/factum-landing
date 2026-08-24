@@ -1,6 +1,6 @@
 ---
-// === PricingTable — Dual-column pricing: Factum API + factum-fic ===
-// Lemon Squeezy checkout direct. Prezzi reali dai codebase.
+// === PricingTable (v2) — Dual-column: Factum API + factum-fic ===
+// Stile industrial-tech, bordi zinc-800, CTA Lemon Squeezy diretti
 
 import type { PricingTier } from "../data/pricing";
 
@@ -11,18 +11,17 @@ export interface Props {
 const { apiTiers, ficTiers } = Astro.props;
 ---
 
-<section id="pricing" class="relative border-t border-white/5 py-20 md:py-28">
-  <div class="pointer-events-none absolute inset-0 bg-grid-subtle opacity-20" aria-hidden="true" />
+<section id="pricing" class="relative border-t border-zinc-800 py-24 md:py-32">
+  <div class="pointer-events-none absolute inset-0 bg-geo opacity-20" aria-hidden="true" />
 
   <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
-    <!-- Header -->
     <div class="mx-auto mb-12 max-w-2xl text-center">
-      <span class="mb-4 inline-block text-xs font-medium uppercase tracking-[0.2em] text-factum-400">Prezzi</span>
-      <h2 class="text-2xl font-bold text-zinc-100 sm:text-3xl">
+      <span class="mb-3 inline-block font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-factum-400">/pricing</span>
+      <h2 class="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
         Paghi solo quello che usi
       </h2>
       <p class="mt-3 text-sm leading-relaxed text-zinc-500">
-        Niente abbonamenti nascosti. Niente sales call. Prezzi trasparenti, uguali per tutti.
+        Niente abbonamenti nascosti. Niente sales call. Prezzi reali, uguali per tutti.
       </p>
     </div>
 
@@ -30,63 +29,59 @@ const { apiTiers, ficTiers } = Astro.props;
       <!-- ── FACTUM API ── -->
       <div>
         <div class="mb-4 flex items-center gap-2">
-          <span class="flex h-5 w-5 items-center justify-center rounded bg-factum-500/10 text-[10px] font-bold text-factum-400">A</span>
-          <h3 class="text-sm font-semibold text-zinc-100">Factum API</h3>
-          <span class="text-xs text-zinc-600">AI Document Parser</span>
+          <span class="flex h-5 w-5 items-center justify-center rounded border border-factum-400/30 text-[10px] font-bold text-factum-400 font-mono">A</span>
+          <h3 class="font-mono text-sm font-semibold text-zinc-100">Factum API</h3>
+          <span class="font-mono text-[11px] text-zinc-600">AI Document Parser</span>
         </div>
-        <div class="grid gap-4 sm:grid-cols-3">
+        <div class="grid gap-3 sm:grid-cols-3">
           {apiTiers.map((tier, i) => (
             <div
-              class="animate-fade-up relative flex flex-col rounded-xl border p-5 transition-all duration-300"
+              class="animate-fade-up flex flex-col rounded-xl border p-5 transition-all duration-200"
               class:list={{
-                "border-factum-500/30 bg-factum-500/5": tier.highlighted,
-                "border-white/5 bg-deep-800/30 hover:border-white/10": !tier.highlighted,
-                "shadow-lg shadow-factum-500/5": tier.highlighted,
+                "border-factum-400/20 bg-[#0d0d0d]": tier.highlighted,
+                "border-zinc-800 bg-[#0d0d0d] hover:border-zinc-600": !tier.highlighted,
               }}
-              style={`animation-delay: ${i * 0.08}s`}
+              style={`animation-delay: ${i * 0.07}s`}
             >
               {tier.badge && (
                 <span
-                  class="absolute -top-2.5 right-3 rounded-full px-2.5 py-0.5 text-[10px] font-medium"
+                  class="mb-3 inline-block w-fit rounded px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider"
                   class:list={{
-                    "bg-factum-500 text-deep-900": tier.highlighted,
-                    "bg-zinc-700 text-zinc-300": !tier.highlighted,
+                    "bg-factum-400 text-[#0d0d0d]": tier.highlighted,
+                    "bg-zinc-800 text-zinc-400": !tier.highlighted,
                   }}
                 >
                   {tier.badge}
                 </span>
               )}
-
               <h4 class="text-base font-semibold text-zinc-100">{tier.name}</h4>
-              <p class="mb-1 text-xs text-zinc-600">{tier.subtitle}</p>
-              <div class="mb-3">
-                <span class="text-2xl font-bold tracking-tight text-zinc-100">{tier.price}</span>
-                <span class="ml-1 text-xs text-zinc-600">{tier.priceSuffix}</span>
+              <p class="text-xs text-zinc-600">{tier.subtitle}</p>
+              <div class="my-3">
+                <span class="text-2xl font-bold tracking-tight text-zinc-100 font-mono">{tier.price}</span>
+                <span class="ml-1 text-xs text-zinc-600 font-mono">{tier.priceSuffix}</span>
               </div>
               <p class="mb-4 text-xs leading-relaxed text-zinc-500">{tier.description}</p>
-
               <ul class="mb-6 space-y-2 text-xs" role="list">
                 {tier.features.map((f) => (
                   <li class="flex items-start gap-2 text-zinc-400">
                     <svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-factum-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     {f}
                   </li>
                 ))}
               </ul>
-
               <a
                 href={tier.ctaHref}
-                class="mt-auto inline-flex w-full items-center justify-center gap-1.5 rounded-lg py-2 text-center text-xs font-medium transition-all"
+                class="mt-auto inline-flex w-full items-center justify-center gap-1.5 rounded-lg py-2 text-center font-mono text-xs font-medium transition-all"
                 class:list={{
-                  "bg-factum-500 text-deep-900 hover:bg-factum-400": tier.highlighted,
-                  "border border-white/10 text-zinc-300 hover:border-factum-500/30 hover:text-factum-300": !tier.highlighted,
+                  "bg-factum-400 text-[#0d0d0d] hover:bg-factum-300": tier.highlighted,
+                  "border border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200": !tier.highlighted,
                 }}
               >
                 {tier.cta}
                 <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </a>
             </div>
@@ -97,64 +92,59 @@ const { apiTiers, ficTiers } = Astro.props;
       <!-- ── FACTUM-FIC ── -->
       <div>
         <div class="mb-4 flex items-center gap-2">
-          <span class="flex h-5 w-5 items-center justify-center rounded bg-factum-500/10 text-[10px] font-bold text-factum-400">F</span>
-          <h3 class="text-sm font-semibold text-zinc-100">factum-fic</h3>
-          <span class="text-xs text-zinc-600">CLI Contabile Forfettari</span>
+          <span class="flex h-5 w-5 items-center justify-center rounded border border-factum-400/30 text-[10px] font-bold text-factum-400 font-mono">F</span>
+          <h3 class="font-mono text-sm font-semibold text-zinc-100">factum-fic</h3>
+          <span class="font-mono text-[11px] text-zinc-600">CLI Contabile Forfettari</span>
         </div>
-        <div class="grid gap-4 sm:grid-cols-3">
+        <div class="grid gap-3 sm:grid-cols-3">
           {ficTiers.map((tier, i) => (
             <div
-              class="animate-fade-up relative flex flex-col rounded-xl border p-5 transition-all duration-300"
+              class="animate-fade-up flex flex-col rounded-xl border p-5 transition-all duration-200"
               class:list={{
-                "border-factum-500/30 bg-factum-500/5": tier.highlighted,
-                "border-white/5 bg-deep-800/30 hover:border-white/10": !tier.highlighted,
-                "shadow-lg shadow-factum-500/5": tier.highlighted,
+                "border-factum-400/20 bg-[#0d0d0d]": tier.highlighted,
+                "border-zinc-800 bg-[#0d0d0d] hover:border-zinc-600": !tier.highlighted,
               }}
-              style={`animation-delay: ${i * 0.08 + 0.15}s`}
+              style={`animation-delay: ${i * 0.07 + 0.12}s`}
             >
               {tier.badge && (
                 <span
-                  class="absolute -top-2.5 right-3 rounded-full px-2.5 py-0.5 text-[10px] font-medium"
+                  class="mb-3 inline-block w-fit rounded px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider"
                   class:list={{
-                    "bg-factum-500 text-deep-900": tier.highlighted,
-                    "bg-zinc-700 text-zinc-300": !tier.highlighted,
+                    "bg-factum-400 text-[#0d0d0d]": tier.highlighted,
+                    "bg-zinc-800 text-zinc-400": !tier.highlighted,
                   }}
                 >
                   {tier.badge}
                 </span>
               )}
-
               <h4 class="text-base font-semibold text-zinc-100">{tier.name}</h4>
-              <p class="mb-1 text-xs text-zinc-600">{tier.subtitle}</p>
-              <div class="mb-3">
-                <span class="text-2xl font-bold tracking-tight text-zinc-100">{tier.price}</span>
-                <span class="ml-1 text-xs text-zinc-600">{tier.priceSuffix}</span>
+              <p class="text-xs text-zinc-600">{tier.subtitle}</p>
+              <div class="my-3">
+                <span class="text-2xl font-bold tracking-tight text-zinc-100 font-mono">{tier.price}</span>
+                <span class="ml-1 text-xs text-zinc-600 font-mono">{tier.priceSuffix}</span>
               </div>
               <p class="mb-4 text-xs leading-relaxed text-zinc-500">{tier.description}</p>
-
               <ul class="mb-6 space-y-2 text-xs" role="list">
                 {tier.features.map((f) => (
                   <li class="flex items-start gap-2 text-zinc-400">
                     <svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-factum-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     {f}
                   </li>
                 ))}
               </ul>
-
               <a
                 href={tier.ctaHref}
-                class="mt-auto inline-flex w-full items-center justify-center gap-1.5 rounded-lg py-2 text-center text-xs font-medium transition-all"
+                class="mt-auto inline-flex w-full items-center justify-center gap-1.5 rounded-lg py-2 text-center font-mono text-xs font-medium transition-all"
                 class:list={{
-                  "bg-factum-500 text-deep-900 hover:bg-factum-400": tier.highlighted,
-                  "border border-white/10 text-zinc-300 hover:border-factum-500/30 hover:text-factum-300": !tier.highlighted,
-                  "bg-white/5 text-zinc-400 hover:bg-white/10": tier.price === "€0" && !tier.highlighted,
+                  "bg-factum-400 text-[#0d0d0d] hover:bg-factum-300": tier.highlighted,
+                  "border border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200": !tier.highlighted,
                 }}
               >
                 {tier.cta}
                 <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </a>
             </div>
@@ -163,16 +153,14 @@ const { apiTiers, ficTiers } = Astro.props;
       </div>
     </div>
 
-    <!-- factum-fic pricing detail -->
-    <div class="mx-auto mt-10 max-w-3xl animate-fade-up rounded-xl border border-white/5 bg-deep-800/20 p-5 text-center text-sm" style="animation-delay: 0.6s">
-      <p class="text-zinc-400">
-        <span class="font-semibold text-factum-400">💡 10 PDF al mese bastano per oltre l'80% dei forfettari.</span>
-        <br class="sm:hidden" />{" "}
-        Hosting, dominio, AI, SaaS vari. Se stai iniziando, molto probabilmente non spenderai mai un centesimo.
+    <!-- Note -->
+    <div class="mx-auto mt-10 max-w-3xl animate-fade-up rounded-lg border border-zinc-800 bg-[#0d0d0d] px-5 py-4 text-center" style="animation-delay: 0.5s">
+      <p class="font-mono text-sm text-zinc-400">
+        <span class="text-factum-400">&#x1f4a1;</span> XML FatturaPA: <span class="text-zinc-200">&euro;0 &mdash; illimitate</span>
+        &middot; Elaborazione 100% sul tuo computer
       </p>
-      <p class="mt-2 text-xs text-zinc-600">
-        XML FatturaPA: <span class="font-mono text-zinc-400">€0 — gratis e illimitate</span>
-        . Elaborazione 100% sul tuo computer.
+      <p class="mt-1 text-xs text-zinc-600">
+        Hai una Partita IVA? Inseriscila nel checkout Lemon Squeezy per ricevere la fattura elettronica.
       </p>
     </div>
   </div>
