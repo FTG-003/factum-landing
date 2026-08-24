@@ -1,6 +1,6 @@
 // === Snippet di codice reali estratti dai codebase Factum + factum-fic ===
 
-export const curlSnippet = `curl -X POST https://api.factum.pyragogy.org/v1/parse \\
+export const curlSnippet = `curl -X POST https://factum.pyragogy.org/v1/parse \\
   -H "X-API-Key: \${FACTUM_API_KEY}" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -13,7 +13,7 @@ export const pythonSnippet = `import httpx
 async def parse_invoice(text: str, api_key: str):
     async with httpx.AsyncClient() as client:
         resp = await client.post(
-            "https://api.factum.pyragogy.org/v1/parse",
+            "https://factum.pyragogy.org/v1/parse",
             headers={"X-API-Key": api_key},
             json={"text": text, "doc_type": "fattura"},
         )
