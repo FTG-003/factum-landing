@@ -1,0 +1,73 @@
+---
+// Cookie Consent — vanilla-cookieconsent v3 (self-hosted npm)
+---
+
+<script>
+import * as cc from 'vanilla-cookieconsent';
+import 'vanilla-cookieconsent/dist/cookieconsent.css';
+
+cc.run({
+  guiOptions: {
+    consentModal: {
+      layout: 'cloud',
+      position: 'bottom center',
+      equalWeightButtons: true,
+      flipButtons: false,
+    },
+    preferencesModal: {
+      layout: 'box',
+      position: 'right',
+      equalWeightButtons: true,
+      flipButtons: false,
+    },
+  },
+  categories: {
+    necessary: { enabled: true, readOnly: true },
+    analytics: { enabled: false, readOnly: false },
+  },
+  language: {
+    default: 'it',
+    translations: {
+      it: {
+        consentModal: {
+          title: 'Questo sito utilizza cookie',
+          description:
+            'Utilizziamo cookie tecnici (essenziali) e analytics anonimi (Plausible self-hostato). I dati raccolti sono anonimi e non consentono la tua identificazione.',
+          acceptAllBtn: 'Accetta tutti',
+          acceptNecessaryBtn: 'Solo necessari',
+          showPreferencesBtn: 'Personalizza',
+          footer:
+            '<a href="/privacy/">Privacy</a> · <a href="/cookies/">Cookie</a> · <a href="/terms/">Termini</a>',
+        },
+        preferencesModal: {
+          title: 'Preferenze Cookie',
+          acceptAllBtn: 'Accetta tutti',
+          acceptNecessaryBtn: 'Solo necessari',
+          savePreferencesBtn: 'Salva preferenze',
+          closeIconLabel: 'Chiudi',
+          sections: [
+            {
+              title: 'Cookie Necessari',
+              description: 'Essenziali per il funzionamento del sito.',
+              linkedCategory: 'necessary',
+            },
+            {
+              title: 'Cookie Analytics',
+              description: 'Plausible self-hostato per statistiche anonime. Nessun dato personale.',
+              linkedCategory: 'analytics',
+            },
+            {
+              title: 'Maggiori informazioni',
+              description:
+                'Consulta la <a href="/privacy/">Privacy Policy</a> o scrivi a <a href="mailto:info@pyragogy.org">info@pyragogy.org</a>.',
+            },
+          ],
+        },
+      },
+    },
+  },
+});
+
+// Expose for footer "Gestisci Cookie" button
+window.__cc = cc;
+</script>
