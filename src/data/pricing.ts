@@ -120,8 +120,8 @@ export const factumFicTiers: PricingTier[] = [
   {
     name: "Open Source",
     subtitle: "AGPL-3.0",
-    price: "€0",
-    priceSuffix: "contribuisci",
+    price: "",
+    priceSuffix: "",
     description: "Il codice è pubblico. Ognuno può controllare, modificare, migliorare.",
     features: [
       "Codice sorgente pubblico su GitHub",

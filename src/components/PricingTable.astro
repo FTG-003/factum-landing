@@ -26,7 +26,7 @@ const { apiTiers, ficTiers } = Astro.props;
       <!-- ── FACTUM API ── -->
       <div>
         <div class="mb-6 flex items-center gap-3">
-          <span class="flex h-7 w-7 items-center justify-center rounded border border-factum-400/30 text-sm font-bold text-factum-400 font-mono">A</span>
+          <img src="/logo-2.webp" alt="Factum" class="h-8 w-auto" />
           <h3 class="font-mono text-lg font-semibold text-zinc-100">Factum API</h3>
           <span class="font-mono text-sm text-zinc-600">AI Document Parser</span>
         </div>
@@ -46,10 +46,12 @@ const { apiTiers, ficTiers } = Astro.props;
               )}
               <h4 class="text-xl font-semibold text-zinc-100">{tier.name}</h4>
               <p class="text-sm text-zinc-600">{tier.subtitle}</p>
+              {tier.price && (
               <div class="my-4">
                 <span class="text-3xl font-bold tracking-tight text-zinc-100 font-mono">{tier.price}</span>
                 <span class="ml-1.5 text-sm text-zinc-600 font-mono">{tier.priceSuffix}</span>
               </div>
+              )}
               <p class="mb-5 text-sm leading-relaxed text-zinc-500">{tier.description}</p>
               <ul class="mb-8 space-y-2.5 text-sm" role="list">
                 {tier.features.map((f) => (
@@ -80,8 +82,8 @@ const { apiTiers, ficTiers } = Astro.props;
       <!-- ── FACTUM-FIC ── -->
       <div>
         <div class="mb-6 flex items-center gap-3">
-          <span class="flex h-7 w-7 items-center justify-center rounded border border-factum-400/30 text-sm font-bold text-factum-400 font-mono">F</span>
-          <h3 class="font-mono text-lg font-semibold text-zinc-100">factum-fic</h3>
+          <img src="/factum-FIC-github.webp" alt="Factum Fatture In Cloud" class="h-8 w-auto" />
+          <h3 class="font-mono text-lg font-semibold text-zinc-100">Factum Fatture In Cloud</h3>
           <span class="font-mono text-sm text-zinc-600">CLI Contabile Forfettari</span>
         </div>
         <div class="grid gap-4 sm:grid-cols-3">
@@ -100,10 +102,12 @@ const { apiTiers, ficTiers } = Astro.props;
               )}
               <h4 class="text-xl font-semibold text-zinc-100">{tier.name}</h4>
               <p class="text-sm text-zinc-600">{tier.subtitle}</p>
+              {tier.price && (
               <div class="my-4">
                 <span class="text-3xl font-bold tracking-tight text-zinc-100 font-mono">{tier.price}</span>
                 <span class="ml-1.5 text-sm text-zinc-600 font-mono">{tier.priceSuffix}</span>
               </div>
+              )}
               <p class="mb-5 text-sm leading-relaxed text-zinc-500">{tier.description}</p>
               <ul class="mb-8 space-y-2.5 text-sm" role="list">
                 {tier.features.map((f) => (
