@@ -24,7 +24,7 @@ const { curlSnippet, pythonSnippet, responseSnippet, cliHelpSnippet, cliUsageSni
       <span class="mb-6 inline-block font-mono text-xs font-medium uppercase tracking-[0.3em] text-zinc-600">
         Factum
       </span>
-      <h1 class="font-serif-display text-5xl leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">
+      <h1 class="font-serif-display text-4xl leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
         <span class="text-zinc-100">Parsing che capisce.</span>
         <br />
         <span class="text-factum-400">Contabilità che non rompe.</span>
@@ -49,11 +49,11 @@ const { curlSnippet, pythonSnippet, responseSnippet, cliHelpSnippet, cliUsageSni
       </div>
     </div>
 
-    <!-- Dual columns — big gap -->
+      <!-- Dual columns — big gap -->
     <div class="grid gap-8 lg:grid-cols-2 lg:gap-10">
       <!-- ── SX: FACTUM API ── -->
       <div
-        class="animate-fade-up rounded-2xl border border-zinc-800/60 bg-deep-800 p-8"
+        class="animate-fade-up rounded-2xl border border-zinc-800/60 bg-deep-800 p-6 sm:p-8"
         style="animation-delay: 0.05s"
         x-data="{ apiTab: 'curl' }"
       >
@@ -67,8 +67,8 @@ const { curlSnippet, pythonSnippet, responseSnippet, cliHelpSnippet, cliUsageSni
             <p class="mt-1 text-sm text-zinc-500">FatturaPA · PDF · F24 · fatture SaaS</p>
           </div>
           <div class="shrink-0 text-right">
-            <div class="text-2xl font-bold tracking-tight text-factum-400 font-mono">41 ms</div>
-            <div class="text-xs font-mono uppercase tracking-wider text-zinc-600">fast-path</div>
+            <div class="text-xl sm:text-2xl font-bold tracking-tight text-factum-400 font-mono">41 ms</div>
+            <div class="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-zinc-600">fast-path</div>
           </div>
         </div>
 
@@ -104,7 +104,7 @@ const { curlSnippet, pythonSnippet, responseSnippet, cliHelpSnippet, cliUsageSni
 
       <!-- ── DX: FACTUM-FIC CLI ── -->
       <div
-        class="animate-fade-up rounded-2xl border border-zinc-800/60 bg-deep-800 p-8"
+        class="animate-fade-up rounded-2xl border border-zinc-800/60 bg-deep-800 p-6 sm:p-8"
         style="animation-delay: 0.12s"
         x-data="{ cliTab: 'help' }"
       >
@@ -118,8 +118,8 @@ const { curlSnippet, pythonSnippet, responseSnippet, cliHelpSnippet, cliUsageSni
             <p class="mt-1 text-sm text-zinc-500">Open Source · AGPL-3.0 · 208 test</p>
           </div>
           <div class="shrink-0 text-right">
-            <div class="text-2xl font-bold tracking-tight text-factum-400 font-mono">€0</div>
-            <div class="text-xs font-mono uppercase tracking-wider text-zinc-600">10 PDF/mese</div>
+            <div class="text-xl sm:text-2xl font-bold tracking-tight text-factum-400 font-mono">€0</div>
+            <div class="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-zinc-600">10 PDF/mese</div>
           </div>
         </div>
 
