@@ -1,6 +1,5 @@
 ---
-// === CodeBlock — Terminal-style code display ===
-// Pre-processa l'highlight nel frontmatter, output HTML safe.
+// === CodeBlock — Terminal-style, emerald highlights ===
 
 export interface Props {
   code: string;
@@ -12,23 +11,17 @@ export interface Props {
 const { code, lang = "bash", title, compact = false } = Astro.props;
 
 function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 function highlightLine(line: string): string {
   const trimmed = line.replace(/\s+$/, "");
   if (!trimmed) return "";
 
-  // Comment lines
   if (trimmed.startsWith("#") || trimmed.startsWith("//")) {
     return `<span class="text-zinc-600">${escapeHtml(trimmed)}</span>`;
   }
 
-  // Shell prompt lines
   if (trimmed.startsWith("$")) {
     const prompt = '<span class="text-factum-400 select-none">$</span>';
     const rest = processInline(escapeHtml(trimmed.slice(1)));
@@ -39,44 +32,31 @@ function highlightLine(line: string): string {
 }
 
 function processInline(text: string): string {
-  // URLs
-  let s = text.replace(
-    /(https?:\/\/[^\s<]+)/g,
-    '<span class="text-factum-300 underline decoration-factum-500/30">$1</span>'
-  );
-  // Inline backticks (code)
-  s = s.replace(/`([^`]+)`/g, '<span class="text-amber-300/80">$1</span>');
-  // JSON keys
+  let s = text.replace(/(https?:\/\/[^\s<]+)/g, '<span class="text-factum-300 underline decoration-factum-500/30">$1</span>');
+  s = s.replace(/`([^`]+)`/g, '<span class="text-factum-400">$1</span>');
   if (lang === "json") {
-    s = s.replace(/"([^"]+)":/g, '<span class="text-factum-300">"$1"</span>:');
+    s = s.replace(/"([^"]+)":/g, '<span class="text-zinc-300">"$1"</span>:');
   }
-  // Numbers
-  s = s.replace(/\b(\d+[.,]?\d*)\b/g, '<span class="text-amber-300">$1</span>');
+  s = s.replace(/\b(\d+[.,]?\d*)\b/g, '<span class="text-factum-400">$1</span>');
   return s;
 }
 
 const highlighted = code.split("\n").map(highlightLine).join("\n");
 ---
 
-<div
-  class="group relative overflow-hidden rounded-xl border border-white/5 bg-deep-900/80 font-mono text-sm transition-all duration-300 hover:border-white/10"
-  class:list={{ "shadow-lg shadow-factum-500/5": !compact }}
->
-  <!-- Title bar with traffic light dots -->
+<div class="group relative overflow-hidden rounded-2xl border border-zinc-800/60 bg-deep-900/80 font-mono text-sm transition-all duration-300 hover:border-zinc-700/80">
   {title && (
-    <div class="flex items-center gap-3 border-b border-white/5 px-4 py-2">
+    <div class="flex items-center gap-3 border-b border-zinc-800/60 px-5 py-2.5">
       <div class="flex gap-1.5">
         <span class="h-2.5 w-2.5 rounded-full bg-red-500/60" />
         <span class="h-2.5 w-2.5 rounded-full bg-yellow-500/60" />
-        <span class="h-2.5 w-2.5 rounded-full bg-green-500/60" />
+        <span class="h-2.5 w-2.5 rounded-full bg-factum-400/60" />
       </div>
-      <span class="text-xs text-zinc-500">{title}</span>
-      <span class="ml-auto text-[10px] uppercase tracking-wider text-zinc-600">{lang}</span>
+      <span class="text-sm text-zinc-500">{title}</span>
+      <span class="ml-auto text-xs uppercase tracking-wider text-zinc-600">{lang}</span>
     </div>
   )}
-
-  <!-- Code container -->
-  <div class="overflow-x-auto terminal-scrollbar" class:list={{ "p-4": !compact, "p-3": compact }}>
-    <pre class="leading-relaxed"><code class="text-xs sm:text-sm" set:html={highlighted} /></pre>
+  <div class="overflow-x-auto terminal-scrollbar" class:list={{ "p-5": !compact, "p-3": compact }}>
+    <pre class="leading-relaxed"><code class="text-sm" set:html={highlighted} /></pre>
   </div>
 </div>

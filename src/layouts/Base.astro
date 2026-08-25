@@ -1,5 +1,5 @@
 ---
-// === Base Layout (v2) — Dark only, minimal footer ===
+// === Base Layout — Dark only, Fraunces/Inter/IBM Plex Mono ===
 
 import "../styles/global.css";
 
@@ -40,14 +40,14 @@ const {
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js" crossorigin="anonymous"></script>
   </head>
 
-  <body class="min-h-screen bg-[#0a0e14] text-zinc-100 font-sans antialiased">
+  <body class="min-h-screen bg-deep-900 text-zinc-100 font-sans antialiased">
     <slot />
 
-    <!-- Footer monospace minimal -->
-    <footer class="border-t border-zinc-800 bg-[#080b10]">
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800/60 bg-deep-950">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="flex flex-col items-center justify-between gap-4 py-8 sm:flex-row">
-          <div class="flex items-center gap-4 font-mono text-[12px] text-zinc-600">
+        <div class="flex flex-col items-center justify-between gap-5 py-10 sm:flex-row">
+          <div class="flex items-center gap-5 font-mono text-sm text-zinc-600">
             <span class="text-factum-400">&copy; {new Date().getFullYear()}</span>
             <span class="text-zinc-700">|</span>
             <a href="https://github.com/FTG-003/factum-fic" class="transition-colors hover:text-zinc-400">AGPL-3.0</a>
@@ -56,9 +56,9 @@ const {
             <span class="text-zinc-700">|</span>
             <a href="mailto:info@pyragogy.org" class="transition-colors hover:text-zinc-400">info@pyragogy.org</a>
           </div>
-          <div class="flex items-center gap-3 font-mono text-[11px]">
-            <span class="rounded border border-zinc-800 px-2 py-0.5 text-zinc-500">Pyragogy</span>
-            <span class="rounded border border-factum-400/20 px-2 py-0.5 text-factum-400">&empty; Data Retention</span>
+          <div class="flex items-center gap-3 font-mono text-xs">
+            <span class="rounded-xl border border-zinc-800/60 px-3 py-1.5 text-zinc-500">Pyragogy</span>
+            <span class="rounded-xl border border-factum-400/20 px-3 py-1.5 text-factum-400">&empty; Zero Data Retention</span>
           </div>
         </div>
       </div>

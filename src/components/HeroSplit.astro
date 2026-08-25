@@ -1,6 +1,6 @@
 ---
-// === HeroSplit (v2) — Dual-Core: Factum API (sx) vs factum-fic (dx) ===
-// Stile industrial-tech, tab interattivi per snippet, zero AI-slop decorations
+// === HeroSplit — Dual-Core: Factum API vs factum-fic ===
+// Big headline, big cards, big energy
 
 import CodeBlock from "./CodeBlock.astro";
 
@@ -13,126 +13,136 @@ export interface Props {
   xmlSnippet: string;
 }
 const { curlSnippet, pythonSnippet, responseSnippet, cliHelpSnippet, cliUsageSnippet, xmlSnippet } = Astro.props;
-
-const apiTabs = ["curl", "python", "response"];
-const cliTabs = ["help", "quickstart", "xml"];
 ---
 
-<section class="relative min-h-[calc(100vh-4rem)] pt-28 md:pt-36">
+<section class="relative min-h-[calc(100vh-4rem)] pt-32 md:pt-44">
   <div class="pointer-events-none absolute inset-0 bg-geo opacity-30" aria-hidden="true" />
 
-  <div class="relative mx-auto max-w-7xl px-6 pb-20 lg:px-8">
-    <!-- Headline -->
-    <div class="mx-auto mb-14 max-w-4xl text-center">
-      <span class="mb-4 inline-block font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-zinc-600">
+  <div class="relative mx-auto max-w-7xl px-6 pb-24 lg:px-8">
+    <!-- Headline — Fraunces grande, emerald accent -->
+    <div class="mx-auto mb-20 max-w-5xl text-center">
+      <span class="mb-6 inline-block font-mono text-xs font-medium uppercase tracking-[0.3em] text-zinc-600">
         Factum · Pyragogy
       </span>
-      <h1 class="font-serif-display text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+      <h1 class="font-serif-display text-5xl leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">
         <span class="text-zinc-100">Parsing che capisce.</span>
         <br />
         <span class="text-factum-400">Contabilità che non rompe.</span>
       </h1>
-      <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-500">
-        <span class="text-zinc-400">Factum API</span> per dare intelligenza documentale ai tuoi
-        agenti AI. <span class="text-zinc-400">factum-fic</span> per liberare i forfettari dalla
+      <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-zinc-500">
+        <span class="font-medium text-zinc-300">Factum API</span> per dare intelligenza documentale ai tuoi
+        agenti AI. <span class="font-medium text-zinc-300">factum-fic</span> per liberare i forfettari dalla
         burocrazia delle fatture estere.
       </p>
     </div>
 
-    <!-- Dual columns -->
-    <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
+    <!-- Dual columns — big gap -->
+    <div class="grid gap-8 lg:grid-cols-2 lg:gap-10">
       <!-- ── SX: FACTUM API ── -->
       <div
-        class="animate-fade-up rounded-xl border border-zinc-800 bg-[#12161f] p-6 transition-all duration-300 sm:p-7"
+        class="animate-fade-up rounded-2xl border border-zinc-800/60 bg-deep-800 p-8"
         style="animation-delay: 0.05s"
         x-data="{ apiTab: 'curl' }"
       >
-        <div class="mb-5 flex items-start justify-between">
+        <div class="mb-6 flex items-start justify-between">
           <div>
-            <div class="mb-1.5 flex items-center gap-2">
-              <span class="flex h-5 w-5 items-center justify-center rounded border border-factum-400/30 text-[10px] font-bold text-factum-400 font-mono">A</span>
-              <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-factum-400">Factum API</span>
+            <div class="mb-2 flex items-center gap-2">
+              <span class="flex h-6 w-6 items-center justify-center rounded border border-factum-400/30 text-xs font-bold text-factum-400 font-mono">A</span>
+              <span class="font-mono text-xs font-semibold uppercase tracking-wider text-factum-400">Factum API</span>
             </div>
-            <h2 class="text-lg font-bold text-zinc-100 sm:text-xl">AI Document Parser</h2>
-            <p class="text-sm text-zinc-500">FatturaPA &middot; PDF &middot; F24 &middot; fatture SaaS</p>
+            <h2 class="text-xl font-bold text-zinc-100 sm:text-2xl">AI Document Parser</h2>
+            <p class="mt-1 text-sm text-zinc-500">FatturaPA · PDF · F24 · fatture SaaS</p>
           </div>
           <div class="shrink-0 text-right">
-            <div class="text-xl font-bold tracking-tight text-factum-400 font-mono">41 ms</div>
-            <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-600">fast-path</div>
+            <div class="text-2xl font-bold tracking-tight text-factum-400 font-mono">41 ms</div>
+            <div class="text-xs font-mono uppercase tracking-wider text-zinc-600">fast-path</div>
           </div>
         </div>
 
-        <!-- Tab switcher -->
-        <div class="mb-3 flex gap-1 rounded-lg border border-zinc-800 bg-[#080a10] p-0.5">
-          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="apiTab === 'curl' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="apiTab = 'curl'">cURL</button>
-          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="apiTab === 'python' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="apiTab = 'python'">Python</button>
-          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="apiTab === 'response' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="apiTab = 'response'">JSON</button>
+        <!-- Tab bar -->
+        <div class="mb-4 flex gap-1 rounded-xl border border-zinc-800 bg-deep-900 p-1">
+          <button class="flex-1 rounded-lg px-4 py-2 text-xs font-mono font-medium transition-all"
+            :class="apiTab === 'curl' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'"
+            @click="apiTab = 'curl'">cURL</button>
+          <button class="flex-1 rounded-lg px-4 py-2 text-xs font-mono font-medium transition-all"
+            :class="apiTab === 'python' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'"
+            @click="apiTab = 'python'">Python</button>
+          <button class="flex-1 rounded-lg px-4 py-2 text-xs font-mono font-medium transition-all"
+            :class="apiTab === 'response' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'"
+            @click="apiTab = 'response'">JSON</button>
         </div>
 
-        <div x-show="apiTab === 'curl'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+        <div x-show="apiTab === 'curl'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0">
           <CodeBlock code={curlSnippet} lang="bash" title="POST /v1/parse" />
         </div>
-        <div x-show="apiTab === 'python'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+        <div x-show="apiTab === 'python'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0">
           <CodeBlock code={pythonSnippet} lang="python" title="httpx async" />
         </div>
-        <div x-show="apiTab === 'response'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+        <div x-show="apiTab === 'response'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0">
           <CodeBlock code={responseSnippet} lang="json" title="Envelope v2" />
         </div>
 
-        <div class="mt-4 flex items-center gap-3">
-          <a href="https://docs.factum.pyragogy.org" class="font-mono text-[13px] font-medium text-factum-400 transition-colors hover:text-factum-300">Documentazione &rarr;</a>
-          <a href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333" class="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 px-3.5 py-1.5 font-mono text-[13px] text-zinc-300 transition-all hover:border-zinc-600 hover:text-zinc-100">Free API Key</a>
+        <div class="mt-6 flex items-center gap-4">
+          <a href="https://docs.factum.pyragogy.org" class="font-mono text-sm font-medium text-factum-400 transition-colors hover:text-factum-300">Documentazione →</a>
+          <a href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333"
+             class="ml-auto inline-flex items-center gap-1.5 rounded-xl border border-zinc-800 px-5 py-2.5 font-mono text-sm text-zinc-300 transition-all hover:border-zinc-600 hover:text-zinc-100">Free API Key</a>
         </div>
       </div>
 
       <!-- ── DX: FACTUM-FIC CLI ── -->
       <div
-        class="animate-fade-up rounded-xl border border-zinc-800 bg-[#12161f] p-6 transition-all duration-300 sm:p-7"
+        class="animate-fade-up rounded-2xl border border-zinc-800/60 bg-deep-800 p-8"
         style="animation-delay: 0.12s"
         x-data="{ cliTab: 'help' }"
       >
-        <div class="mb-5 flex items-start justify-between">
+        <div class="mb-6 flex items-start justify-between">
           <div>
-            <div class="mb-1.5 flex items-center gap-2">
-              <span class="flex h-5 w-5 items-center justify-center rounded border border-factum-400/30 text-[10px] font-bold text-factum-400 font-mono">F</span>
-              <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-factum-400">factum-fic</span>
+            <div class="mb-2 flex items-center gap-2">
+              <span class="flex h-6 w-6 items-center justify-center rounded border border-factum-400/30 text-xs font-bold text-factum-400 font-mono">F</span>
+              <span class="font-mono text-xs font-semibold uppercase tracking-wider text-factum-400">factum-fic</span>
             </div>
-            <h2 class="text-lg font-bold text-zinc-100 sm:text-xl">CLI Contabile Forfettari</h2>
-            <p class="text-sm text-zinc-500">Open Source &middot; AGPL-3.0 &middot; 208 test</p>
+            <h2 class="text-xl font-bold text-zinc-100 sm:text-2xl">CLI Contabile Forfettari</h2>
+            <p class="mt-1 text-sm text-zinc-500">Open Source · AGPL-3.0 · 208 test</p>
           </div>
           <div class="shrink-0 text-right">
-            <div class="text-xl font-bold tracking-tight text-factum-400 font-mono">&euro;0</div>
-            <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-600">10 PDF/mese</div>
+            <div class="text-2xl font-bold tracking-tight text-factum-400 font-mono">€0</div>
+            <div class="text-xs font-mono uppercase tracking-wider text-zinc-600">10 PDF/mese</div>
           </div>
         </div>
 
-        <!-- Tab switcher -->
-        <div class="mb-3 flex gap-1 rounded-lg border border-zinc-800 bg-[#080a10] p-0.5">
-          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="cliTab === 'help' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="cliTab = 'help'">--help</button>
-          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="cliTab === 'quickstart' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="cliTab = 'quickstart'">Quickstart</button>
-          <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="cliTab === 'xml' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="cliTab = 'xml'">XML SDI</button>
+        <!-- Tab bar -->
+        <div class="mb-4 flex gap-1 rounded-xl border border-zinc-800 bg-deep-900 p-1">
+          <button class="flex-1 rounded-lg px-4 py-2 text-xs font-mono font-medium transition-all"
+            :class="cliTab === 'help' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'"
+            @click="cliTab = 'help'">--help</button>
+          <button class="flex-1 rounded-lg px-4 py-2 text-xs font-mono font-medium transition-all"
+            :class="cliTab === 'quickstart' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'"
+            @click="cliTab = 'quickstart'">Quickstart</button>
+          <button class="flex-1 rounded-lg px-4 py-2 text-xs font-mono font-medium transition-all"
+            :class="cliTab === 'xml' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'"
+            @click="cliTab = 'xml'">XML SDI</button>
         </div>
 
-        <div x-show="cliTab === 'help'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+        <div x-show="cliTab === 'help'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0">
           <CodeBlock code={cliHelpSnippet} lang="bash" title="$ factum-fic --help" />
         </div>
-        <div x-show="cliTab === 'quickstart'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+        <div x-show="cliTab === 'quickstart'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0">
           <CodeBlock code={cliUsageSnippet} lang="bash" title="Quickstart" />
         </div>
-        <div x-show="cliTab === 'xml'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+        <div x-show="cliTab === 'xml'" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0">
           <CodeBlock code={xmlSnippet} lang="xml" title="FatturaPA XML" />
         </div>
 
-        <div class="mt-4 flex items-center gap-3">
-          <a href="https://github.com/FTG-003/factum-fic" class="font-mono text-[13px] font-medium text-factum-400 transition-colors hover:text-factum-300">GitHub &rarr;</a>
+        <div class="mt-6 flex items-center gap-4">
+          <a href="https://github.com/FTG-003/factum-fic" class="font-mono text-sm font-medium text-factum-400 transition-colors hover:text-factum-300">GitHub →</a>
           <button
-            class="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 px-3.5 py-1.5 font-mono text-[13px] text-zinc-300 transition-all hover:border-zinc-600 hover:text-zinc-100"
+            class="ml-auto inline-flex items-center gap-1.5 rounded-xl border border-zinc-800 px-5 py-2.5 font-mono text-sm text-zinc-300 transition-all hover:border-zinc-600 hover:text-zinc-100"
             @click="
               navigator.clipboard.writeText('pipx install git+https://github.com/FTG-003/factum-fic');
-              $el.textContent = '✅ Copiato!';
-              setTimeout(() => $el.textContent = 'pipx install &rarr;', 2000);
+              $el.innerHTML = '✅ Copiato!';
+              setTimeout(() => $el.innerHTML = 'pipx install →', 2000);
             "
-          >pipx install &rarr;</button>
+          >pipx install →</button>
         </div>
       </div>
     </div>

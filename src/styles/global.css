@@ -1,5 +1,5 @@
-/* === TAILWIND v4 — Factum Pyragogy: Industrial-Tech === */
-/* dark-only · geometric · zero glassmorphism · zero AI-slop */
+/* === TAILWIND v4 — Factum · Pyragogy === */
+/* dark-only · emerald · large ratio · zero AI-slop */
 
 @import "tailwindcss";
 
@@ -8,64 +8,65 @@
   --font-serif: "Fraunces", ui-serif, Georgia, serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* brand: rame/ruggine — timbro su documento, non teal da SaaS generico */
-  --color-factum-50: #fdf3ec;
-  --color-factum-100: #f7dfc9;
-  --color-factum-200: #eec49c;
-  --color-factum-300: #e2a76e;
-  --color-factum-400: #d4a574;
-  --color-factum-500: #c2703d;
-  --color-factum-600: #a35a2e;
-  --color-factum-700: #7d4523;
-  --color-factum-800: #57301a;
-  --color-factum-900: #331c0f;
+  /* brand: verde documento (emerald riff, non teal, non SaaS) */
+  --color-factum-50: #ecfdf5;
+  --color-factum-100: #d1fae5;
+  --color-factum-200: #a7f3d0;
+  --color-factum-300: #6ee7b7;
+  --color-factum-400: #34d399;
+  --color-factum-500: #10b981;
+  --color-factum-600: #059669;
+  --color-factum-700: #047857;
+  --color-factum-800: #065f46;
+  --color-factum-900: #064e3b;
 
-  /* surfaces: blu-inchiostro, non nero puro */
-  --color-deep-50: #f2f3f5;
-  --color-deep-100: #d9dbe0;
-  --color-deep-200: #a8adb8;
-  --color-deep-300: #767d8c;
-  --color-deep-400: #4a505e;
-  --color-deep-500: #2e3340;
+  /* surfaces: blu-inchiostro profondo */
+  --color-deep-50: #f0f2f5;
+  --color-deep-100: #d0d5dd;
+  --color-deep-200: #a3abb8;
+  --color-deep-300: #757f91;
+  --color-deep-400: #4d5668;
+  --color-deep-500: #303846;
   --color-deep-600: #1f2530;
-  --color-deep-700: #171b24;
-  --color-deep-800: #12161f;
+  --color-deep-700: #181c25;
+  --color-deep-800: #13161d;
   --color-deep-900: #0a0e14;
 
-  /* override zinc scale nativa: tutte le classi zinc-* già in uso nei componenti
-     ereditano l'inchiostro invece del grigio neutro — un solo punto di modifica */
-  --color-zinc-50: #f5f6f8;
-  --color-zinc-100: #e8e6e1;
-  --color-zinc-200: #c7cad2;
-  --color-zinc-300: #9a9fa8;
+  /* zinc = ink tones, warmer than neutral */
+  --color-zinc-50: #f4f5f7;
+  --color-zinc-100: #e4e2dc;
+  --color-zinc-200: #c4c6ce;
+  --color-zinc-300: #9ba2ae;
   --color-zinc-400: #8790a3;
   --color-zinc-500: #737b8f;
   --color-zinc-600: #545b6c;
-  --color-zinc-700: #2e3340;
+  --color-zinc-700: #303846;
   --color-zinc-800: #1f2530;
-  --color-zinc-900: #12161f;
+  --color-zinc-900: #13161d;
   --color-zinc-950: #0a0e14;
 
-  /* animations */
-  --animate-fade-up: fade-up 0.6s ease-out forwards;
-  --animate-fade-in: fade-in 0.5s ease-out forwards;
-  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite alternate;
+  /* ── Large type scale ── */
+  --text-display-xl: 4.5rem;   /* 72px — hero headline desktop */
+  --text-display-lg: 3.75rem;  /* 60px */
+  --text-display-md: 3rem;     /* 48px — section titles */
+  --text-heading: 1.5rem;      /* 24px */
+  --text-body-lg: 1.125rem;    /* 18px */
+  --text-body: 1rem;           /* 16px */
+  --text-body-sm: 0.875rem;    /* 14px */
+  --text-small: 0.8125rem;     /* 13px — mono labels */
+  --text-tiny: 0.75rem;        /* 12px — captions */
 }
 
+/* ── Key animations ── */
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-@keyframes glow-pulse {
-  from { box-shadow: 0 0 6px rgba(194, 112, 61, 0.08); }
-  to   { box-shadow: 0 0 20px rgba(194, 112, 61, 0.2); }
-}
 
-/* ── Geometric grid (industrial) ── */
 .bg-geo {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
@@ -74,29 +75,27 @@
 }
 .bg-geo-dense {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
-/* ── Terminal scrollbar ── */
-.terminal-scrollbar::-webkit-scrollbar { width: 5px; }
+.terminal-scrollbar::-webkit-scrollbar { width: 6px; }
 .terminal-scrollbar::-webkit-scrollbar-track { background: transparent; }
-.terminal-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 3px; }
-.terminal-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); }
+.terminal-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.07); border-radius: 3px; }
+.terminal-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.16); }
 
-/* ── Misc ── */
 html { scroll-behavior: smooth; }
-::selection { background: rgba(194, 112, 61, 0.25); color: #fff; }
-*:focus-visible { outline: 2px solid rgba(212, 165, 116, 0.6); outline-offset: 2px; }
+::selection { background: rgba(16, 185, 129, 0.3); color: #fff; }
+*:focus-visible { outline: 2px solid rgba(52, 211, 153, 0.5); outline-offset: 2px; }
 [x-cloak] { display: none !important; }
 
-/* ── Display serif for headlines (Fraunces) ── */
 .font-serif-display {
   font-family: var(--font-serif);
   font-optical-sizing: auto;
-  font-style: italic;
   font-weight: 500;
+  letter-spacing: -0.02em;
+  font-style: normal;
 }
 
 @media print {

@@ -1,7 +1,5 @@
 ---
-// === Index (v2) — Landing page dual-core industrial-tech ===
-// Architettura: Navbar → HeroSplit → DualCoreWorkflow → Pricing → Footer
-// Zero sezioni superflue, zero AI-slop, zero glass
+// === Index — Navbar → HeroSplit → DualCoreWorkflow → Pricing → CTA ===
 
 import Base from "../layouts/Base.astro";
 import Navbar from "../components/Navbar.astro";
@@ -29,7 +27,6 @@ import {
 >
   <Navbar />
 
-  <!-- ═══ 1. HERO DUAL-CORE ═══ -->
   <HeroSplit
     curlSnippet={curlSnippet}
     pythonSnippet={pythonSnippet}
@@ -39,44 +36,39 @@ import {
     xmlSnippet={sdixmlSnippet}
   />
 
-  <!-- ═══ 2. WORKFLOW UNIFICATO (Pipeline + Flow + Privacy) ═══ -->
   <DualCoreWorkflow />
 
-  <!-- ═══ 3. PRICING ═══ -->
   <PricingTable apiTiers={factumApiTiers} ficTiers={factumFicTiers} />
 
-  <!-- ═══ 4. CTA FINALE (inline) ═══ -->
-  <section class="border-t border-zinc-800 py-20">
-    <div class="mx-auto max-w-3xl px-6 text-center lg:px-8">
-      <h2 class="text-3xl font-bold tracking-tight text-zinc-100">
+  <!-- CTA FINALE — bigger, bolder -->
+  <section class="border-t border-zinc-800/60 py-28 md:py-36">
+    <div class="pointer-events-none absolute inset-0 bg-geo opacity-20" aria-hidden="true" />
+    <div class="relative mx-auto max-w-4xl px-6 text-center lg:px-8">
+      <h2 class="font-serif-display text-4xl text-zinc-100 sm:text-5xl leading-tight">
         Provare costa zero secondi
       </h2>
-      <p class="mt-3 text-sm text-zinc-500">
+      <p class="mt-5 text-lg leading-relaxed text-zinc-500 max-w-2xl mx-auto">
         Chiave API gratuita subito. CLI installata in 30 secondi.
         Se non funziona, non hai perso niente. Se funziona, ti cambia la giornata.
       </p>
-      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a
-          href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333"
-          class="inline-flex items-center gap-2 rounded-lg bg-factum-400 px-5 py-2.5 font-mono text-sm font-semibold text-[#0a0e14] transition-all hover:bg-factum-300"
-        >
+      <div class="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row">
+        <a href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333"
+           class="inline-flex items-center gap-2.5 rounded-xl bg-factum-400 px-7 py-3.5 font-mono text-base font-semibold text-deep-900 transition-all hover:bg-factum-300 shadow-sm shadow-factum-500/20">
           Ottieni API Key gratuita
         </a>
         <button
-          class="inline-flex items-center gap-2 rounded-lg border border-zinc-800 px-5 py-2.5 font-mono text-sm text-zinc-400 transition-all hover:border-zinc-600 hover:text-zinc-200"
+          class="inline-flex items-center gap-2.5 rounded-xl border border-zinc-800 px-7 py-3.5 font-mono text-base text-zinc-400 transition-all hover:border-zinc-600 hover:text-zinc-200"
           @click="
             navigator.clipboard.writeText('pipx install git+https://github.com/FTG-003/factum-fic');
-            $el.innerHTML = '&checkmark; Copiato! Incolla nel terminale';
-            setTimeout(() => $el.innerHTML = '&#x1f4cb; Copia: pipx install', 2500);
+            $el.innerHTML = '✅ Copiato! Incolla nel terminale';
+            setTimeout(() => $el.innerHTML = '📋 Copia comando installazione', 2500);
           "
-        >
-          <span>&#x1f4cb;</span> Copia comando installazione
-        </button>
+        >📋 Copia comando installazione</button>
       </div>
-      <p class="mt-6 font-mono text-xs text-zinc-600">
-        AGPL-3.0 &middot;
+      <p class="mt-8 font-mono text-sm text-zinc-600">
+        AGPL-3.0 ·
         <a href="https://github.com/FTG-003/factum-fic" class="underline hover:text-zinc-400">GitHub</a>
-        &middot;
+        ·
         <a href="https://docs.factum.pyragogy.org" class="underline hover:text-zinc-400">Documentazione</a>
       </p>
     </div>
