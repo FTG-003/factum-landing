@@ -5,31 +5,46 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* brand: teal */
-  --color-factum-50: #e6fffa;
-  --color-factum-100: #b3ffef;
-  --color-factum-200: #80ffe3;
-  --color-factum-300: #4dffd8;
-  --color-factum-400: #1affcd;
-  --color-factum-500: #00e6b3;
-  --color-factum-600: #00b38a;
-  --color-factum-700: #008062;
-  --color-factum-800: #004d3a;
-  --color-factum-900: #001a13;
+  /* brand: rame/ruggine — timbro su documento, non teal da SaaS generico */
+  --color-factum-50: #fdf3ec;
+  --color-factum-100: #f7dfc9;
+  --color-factum-200: #eec49c;
+  --color-factum-300: #e2a76e;
+  --color-factum-400: #d4a574;
+  --color-factum-500: #c2703d;
+  --color-factum-600: #a35a2e;
+  --color-factum-700: #7d4523;
+  --color-factum-800: #57301a;
+  --color-factum-900: #331c0f;
 
-  /* surfaces: absolute dark, no glass */
-  --color-deep-50: #f5f5f5;
-  --color-deep-100: #e0e0e0;
-  --color-deep-200: #b0b0b0;
-  --color-deep-300: #808080;
-  --color-deep-400: #606060;
-  --color-deep-500: #404040;
-  --color-deep-600: #2a2a2a;
-  --color-deep-700: #1a1a1a;
-  --color-deep-800: #101010;
-  --color-deep-900: #0a0a0a;
+  /* surfaces: blu-inchiostro, non nero puro */
+  --color-deep-50: #f2f3f5;
+  --color-deep-100: #d9dbe0;
+  --color-deep-200: #a8adb8;
+  --color-deep-300: #767d8c;
+  --color-deep-400: #4a505e;
+  --color-deep-500: #2e3340;
+  --color-deep-600: #1f2530;
+  --color-deep-700: #171b24;
+  --color-deep-800: #12161f;
+  --color-deep-900: #0a0e14;
+
+  /* override zinc scale nativa: tutte le classi zinc-* già in uso nei componenti
+     ereditano l'inchiostro invece del grigio neutro — un solo punto di modifica */
+  --color-zinc-50: #f5f6f8;
+  --color-zinc-100: #e8e6e1;
+  --color-zinc-200: #c7cad2;
+  --color-zinc-300: #9a9fa8;
+  --color-zinc-400: #8790a3;
+  --color-zinc-500: #737b8f;
+  --color-zinc-600: #545b6c;
+  --color-zinc-700: #2e3340;
+  --color-zinc-800: #1f2530;
+  --color-zinc-900: #12161f;
+  --color-zinc-950: #0a0e14;
 
   /* animations */
   --animate-fade-up: fade-up 0.6s ease-out forwards;
@@ -46,8 +61,8 @@
   to   { opacity: 1; }
 }
 @keyframes glow-pulse {
-  from { box-shadow: 0 0 6px rgba(0, 230, 179, 0.08); }
-  to   { box-shadow: 0 0 20px rgba(0, 230, 179, 0.2); }
+  from { box-shadow: 0 0 6px rgba(194, 112, 61, 0.08); }
+  to   { box-shadow: 0 0 20px rgba(194, 112, 61, 0.2); }
 }
 
 /* ── Geometric grid (industrial) ── */
@@ -72,9 +87,17 @@
 
 /* ── Misc ── */
 html { scroll-behavior: smooth; }
-::selection { background: rgba(0, 230, 179, 0.2); color: #fff; }
-*:focus-visible { outline: 2px solid rgba(0, 230, 179, 0.4); outline-offset: 2px; }
+::selection { background: rgba(194, 112, 61, 0.25); color: #fff; }
+*:focus-visible { outline: 2px solid rgba(212, 165, 116, 0.6); outline-offset: 2px; }
 [x-cloak] { display: none !important; }
+
+/* ── Display serif for headlines (Fraunces) ── */
+.font-serif-display {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-style: italic;
+  font-weight: 500;
+}
 
 @media print {
   .no-print { display: none; }

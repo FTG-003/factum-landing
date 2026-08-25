@@ -17,7 +17,7 @@ const { apiTiers, ficTiers } = Astro.props;
   <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto mb-12 max-w-2xl text-center">
       <span class="mb-3 inline-block font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-factum-400">/pricing</span>
-      <h2 class="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+      <h2 class="font-serif-display text-3xl text-zinc-100 sm:text-4xl">
         Paghi solo quello che usi
       </h2>
       <p class="mt-3 text-sm leading-relaxed text-zinc-500">
@@ -38,17 +38,17 @@ const { apiTiers, ficTiers } = Astro.props;
             <div
               class="animate-fade-up flex flex-col rounded-xl border p-5 transition-all duration-200"
               class:list={{
-                "border-factum-400/20 bg-[#0d0d0d]": tier.highlighted,
-                "border-zinc-800 bg-[#0d0d0d] hover:border-zinc-600": !tier.highlighted,
+                "border-zinc-800 border-t-2 border-t-factum-400 bg-[#12161f]": tier.highlighted,
+                "border-zinc-800 bg-[#12161f] hover:border-zinc-600": !tier.highlighted,
               }}
               style={`animation-delay: ${i * 0.07}s`}
             >
               {tier.badge && (
                 <span
-                  class="mb-3 inline-block w-fit rounded px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider"
+                  class="mb-3 font-mono text-[10px] font-medium uppercase tracking-wider"
                   class:list={{
-                    "bg-factum-400 text-[#0d0d0d]": tier.highlighted,
-                    "bg-zinc-800 text-zinc-400": !tier.highlighted,
+                    "text-factum-400": tier.highlighted,
+                    "text-zinc-600": !tier.highlighted,
                   }}
                 >
                   {tier.badge}
@@ -75,7 +75,7 @@ const { apiTiers, ficTiers } = Astro.props;
                 href={tier.ctaHref}
                 class="mt-auto inline-flex w-full items-center justify-center gap-1.5 rounded-lg py-2 text-center font-mono text-xs font-medium transition-all"
                 class:list={{
-                  "bg-factum-400 text-[#0d0d0d] hover:bg-factum-300": tier.highlighted,
+                  "bg-factum-400 text-[#12161f] hover:bg-factum-300": tier.highlighted,
                   "border border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200": !tier.highlighted,
                 }}
               >
@@ -101,17 +101,17 @@ const { apiTiers, ficTiers } = Astro.props;
             <div
               class="animate-fade-up flex flex-col rounded-xl border p-5 transition-all duration-200"
               class:list={{
-                "border-factum-400/20 bg-[#0d0d0d]": tier.highlighted,
-                "border-zinc-800 bg-[#0d0d0d] hover:border-zinc-600": !tier.highlighted,
+                "border-zinc-800 border-t-2 border-t-factum-400 bg-[#12161f]": tier.highlighted,
+                "border-zinc-800 bg-[#12161f] hover:border-zinc-600": !tier.highlighted,
               }}
               style={`animation-delay: ${i * 0.07 + 0.12}s`}
             >
               {tier.badge && (
                 <span
-                  class="mb-3 inline-block w-fit rounded px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider"
+                  class="mb-3 font-mono text-[10px] font-medium uppercase tracking-wider"
                   class:list={{
-                    "bg-factum-400 text-[#0d0d0d]": tier.highlighted,
-                    "bg-zinc-800 text-zinc-400": !tier.highlighted,
+                    "text-factum-400": tier.highlighted,
+                    "text-zinc-600": !tier.highlighted,
                   }}
                 >
                   {tier.badge}
@@ -138,7 +138,7 @@ const { apiTiers, ficTiers } = Astro.props;
                 href={tier.ctaHref}
                 class="mt-auto inline-flex w-full items-center justify-center gap-1.5 rounded-lg py-2 text-center font-mono text-xs font-medium transition-all"
                 class:list={{
-                  "bg-factum-400 text-[#0d0d0d] hover:bg-factum-300": tier.highlighted,
+                  "bg-factum-400 text-[#12161f] hover:bg-factum-300": tier.highlighted,
                   "border border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200": !tier.highlighted,
                 }}
               >
@@ -154,7 +154,7 @@ const { apiTiers, ficTiers } = Astro.props;
     </div>
 
     <!-- Note -->
-    <div class="mx-auto mt-10 max-w-3xl animate-fade-up rounded-lg border border-zinc-800 bg-[#0d0d0d] px-5 py-4 text-center" style="animation-delay: 0.5s">
+    <div class="mx-auto mt-10 max-w-3xl animate-fade-up rounded-lg border border-zinc-800 bg-[#12161f] px-5 py-4 text-center" style="animation-delay: 0.5s">
       <p class="font-mono text-sm text-zinc-400">
         <span class="text-factum-400">&#x1f4a1;</span> XML FatturaPA: <span class="text-zinc-200">&euro;0 &mdash; illimitate</span>
         &middot; Elaborazione 100% sul tuo computer

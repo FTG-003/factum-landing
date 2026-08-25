@@ -27,7 +27,7 @@ const cliTabs = ["help", "quickstart", "xml"];
       <span class="mb-4 inline-block font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-zinc-600">
         Factum · Pyragogy
       </span>
-      <h1 class="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+      <h1 class="font-serif-display text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
         <span class="text-zinc-100">Parsing che capisce.</span>
         <br />
         <span class="text-factum-400">Contabilità che non rompe.</span>
@@ -43,7 +43,7 @@ const cliTabs = ["help", "quickstart", "xml"];
     <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
       <!-- ── SX: FACTUM API ── -->
       <div
-        class="animate-fade-up rounded-xl border border-zinc-800 bg-[#0d0d0d] p-6 transition-all duration-300 sm:p-7"
+        class="animate-fade-up rounded-xl border border-zinc-800 bg-[#12161f] p-6 transition-all duration-300 sm:p-7"
         style="animation-delay: 0.05s"
         x-data="{ apiTab: 'curl' }"
       >
@@ -63,7 +63,7 @@ const cliTabs = ["help", "quickstart", "xml"];
         </div>
 
         <!-- Tab switcher -->
-        <div class="mb-3 flex gap-1 rounded-lg border border-zinc-800 bg-[#080808] p-0.5">
+        <div class="mb-3 flex gap-1 rounded-lg border border-zinc-800 bg-[#080a10] p-0.5">
           <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="apiTab === 'curl' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="apiTab = 'curl'">cURL</button>
           <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="apiTab === 'python' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="apiTab = 'python'">Python</button>
           <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="apiTab === 'response' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="apiTab = 'response'">JSON</button>
@@ -87,7 +87,7 @@ const cliTabs = ["help", "quickstart", "xml"];
 
       <!-- ── DX: FACTUM-FIC CLI ── -->
       <div
-        class="animate-fade-up rounded-xl border border-zinc-800 bg-[#0d0d0d] p-6 transition-all duration-300 sm:p-7"
+        class="animate-fade-up rounded-xl border border-zinc-800 bg-[#12161f] p-6 transition-all duration-300 sm:p-7"
         style="animation-delay: 0.12s"
         x-data="{ cliTab: 'help' }"
       >
@@ -107,7 +107,7 @@ const cliTabs = ["help", "quickstart", "xml"];
         </div>
 
         <!-- Tab switcher -->
-        <div class="mb-3 flex gap-1 rounded-lg border border-zinc-800 bg-[#080808] p-0.5">
+        <div class="mb-3 flex gap-1 rounded-lg border border-zinc-800 bg-[#080a10] p-0.5">
           <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="cliTab === 'help' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="cliTab = 'help'">--help</button>
           <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="cliTab === 'quickstart' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="cliTab = 'quickstart'">Quickstart</button>
           <button class="flex-1 rounded-md px-3 py-1.5 text-[11px] font-mono font-medium transition-all" :class="cliTab === 'xml' ? 'bg-zinc-800 text-zinc-100 border border-zinc-700' : 'text-zinc-600 hover:text-zinc-400'" @click="cliTab = 'xml'">XML SDI</button>
