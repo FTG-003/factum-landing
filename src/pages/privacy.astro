@@ -1,0 +1,85 @@
+---
+// === Privacy Policy ===
+import LegalLayout from "../layouts/LegalLayout.astro";
+---
+
+<LegalLayout
+  title="Privacy Policy"
+  description="Informativa sul trattamento dei dati personali — Factum API & factum-fic CLI"
+  lastUpdated="16 Agosto 2026"
+>
+  <div class="legal-body">
+    <h1>Informativa sul Trattamento dei Dati Personali</h1>
+
+    <p>La presente informativa descrive le modalità con cui <strong>Fabrizio Terzi</strong> tratta i dati personali degli utenti che utilizzano i servizi <strong>Factum API</strong> e <strong>factum-fic CLI</strong>.</p>
+
+    <hr />
+
+    <h2>1. Titolare del Trattamento</h2>
+    <ul>
+      <li><strong>Titolare:</strong> Fabrizio Terzi</li>
+      <li><strong>Sede:</strong> Bergamo (BG), Italia</li>
+      <li><strong>Partita IVA:</strong> IT04923300166</li>
+      <li><strong>Email:</strong> <code>info@pyragogy.org</code></li>
+    </ul>
+
+    <hr />
+
+    <h2>2. Architettura Zero Data Retention (ZDR)</h2>
+    <p>Factum è progettata secondo i principi di <strong>Privacy by Design</strong> e <strong>Privacy by Default</strong> (Art. 25 GDPR):</p>
+    <ul>
+      <li><strong>Elaborazione volatile in-RAM:</strong> I documenti inviati vengono processati esclusivamente nella memoria volatile del server.</li>
+      <li><strong>Nessuna persistenza:</strong> Nessun documento, payload JSON, dato anagrafico o fiscale viene mai salvato su disco.</li>
+      <li><strong>Isolamento da modelli AI:</strong> I dati non vengono utilizzati per addestramento di modelli né inoltrati a provider AI terzi senza preventiva sanificazione.</li>
+      <li><strong>Cancellazione istantanea:</strong> Al termine dell'elaborazione, la memoria occupata dal payload viene deallocata immediatamente.</li>
+    </ul>
+
+    <hr />
+
+    <h2>3. Tipologie di Dati Trattati</h2>
+
+    <h3>A. Dati di Autenticazione e Gestione Licenze</h3>
+    <ul>
+      <li><strong>Dati trattati:</strong> Hash SHA-256 della API Key, ID cliente Lemon Squeezy, email, stato abbonamento, tier.</li>
+      <li><strong>Finalità:</strong> Autenticazione e verifica della sottoscrizione.</li>
+      <li><strong>Base giuridica:</strong> Esecuzione del contratto (Art. 6.1.b GDPR).</li>
+    </ul>
+
+    <h3>B. Dati Tecnici di Connessione</h3>
+    <ul>
+      <li><strong>Dati trattati:</strong> Indirizzo IP, timestamp, endpoint invocato, codice risposta HTTP.</li>
+      <li><strong>Finalità:</strong> Protezione DDoS, anti-abuse, rate limiting.</li>
+      <li><strong>Base giuridica:</strong> Legittimo interesse (Art. 6.1.f GDPR).</li>
+    </ul>
+
+    <hr />
+
+    <h2>4. Pagamenti e Merchant of Record</h2>
+    <p>I pagamenti sono gestiti interamente da <strong>Lemon Squeezy, LLC</strong> — 222 S. Main Street, Suite 500, Salt Lake City, UT 84101, USA — in qualità di autonomo Titolare del Trattamento (PCI-DSS compliant). Il Titolare non ha accesso né memorizza dati di pagamento.</p>
+
+    <hr />
+
+    <h2>5. Destinatari e Ubicazione</h2>
+    <p>I server di elaborazione e il database di autenticazione sono ospitati esclusivamente nello <strong>Spazio Economico Europeo (UE)</strong> su server dedicati con crittografia TLS 1.3. Nessun dato personale viene trasferito verso paesi terzi non coperti da decisioni di adeguatezza della Commissione Europea.</p>
+
+    <hr />
+
+    <h2>6. Periodo di Conservazione</h2>
+    <ul>
+      <li><strong>Payload e file inviati:</strong> Zero secondi (nessuna retention).</li>
+      <li><strong>Hash API Key e stato abbonamento:</strong> Per tutta la durata del rapporto contrattuale, cancellati entro 30 giorni dalla cessazione.</li>
+      <li><strong>Log di sicurezza (IP, rate limit):</strong> Massimo 14 giorni, poi sovrascritti.</li>
+    </ul>
+
+    <hr />
+
+    <h2>7. Diritti dell'Interessato</h2>
+    <p>Ai sensi degli artt. 15-22 GDPR, puoi esercitare in qualsiasi momento i diritti di:</p>
+    <ul>
+      <li>Accesso, rettifica e cancellazione dei dati personali.</li>
+      <li>Limitazione del trattamento e opposizione.</li>
+      <li>Proporre reclamo al <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">Garante per la Protezione dei Dati Personali</a>.</li>
+    </ul>
+    <p>Scrivi a <code>info@pyragogy.org</code> per esercitare i tuoi diritti.</p>
+  </div>
+</LegalLayout>

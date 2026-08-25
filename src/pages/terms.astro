@@ -1,0 +1,90 @@
+---
+// === Terms of Service ===
+import LegalLayout from "../layouts/LegalLayout.astro";
+---
+
+<LegalLayout
+  title="Termini di Servizio"
+  description="Termini di servizio — Factum API & factum-fic CLI"
+  lastUpdated="16 Agosto 2026"
+>
+  <div class="legal-body">
+    <h1>Termini di Servizio</h1>
+
+    <p>I presenti Termini di Servizio disciplinano l'utilizzo di <strong>Factum API</strong> e <strong>factum-fic CLI</strong>, servizi forniti da <strong>Fabrizio Terzi</strong> (P.IVA IT04923300166).</p>
+
+    <hr />
+
+    <h2>1. Accettazione dei Termini</h2>
+    <p>Utilizzando i servizi Factum, l'utente dichiara di aver letto, compreso e accettato i presenti Termini e la <a href="/privacy/">Privacy Policy</a>.</p>
+
+    <hr />
+
+    <h2>2. Descrizione dei Servizi</h2>
+    <ul>
+      <li><strong>Factum API</strong> — Servizio di parsing documentale (fatture XML/PDF) che restituisce dati strutturati in formato JSON.</li>
+      <li><strong>factum-fic CLI</strong> — Strumento open source (AGPL-3.0) per la gestione contabile dei forfettari, disponibile su GitHub.</li>
+    </ul>
+
+    <hr />
+
+    <h2>3. Account e API Key</h2>
+    <ul>
+      <li>L'API Key è personale e non trasferibile.</li>
+      <li>L'utente è responsabile della riservatezza della propria chiave.</li>
+      <li>L'uso della chiave in violazione dei presenti Termini può comportare la sospensione del servizio.</li>
+      <li>L'API Key è memorizzata solo come hash SHA-256 (Zero Data Retention).</li>
+    </ul>
+
+    <hr />
+
+    <h2>4. Abbonamenti e Pagamenti</h2>
+    <p>I prodotti a pagamento (tier Factum API, crediti factum-fic) sono venduti tramite <strong>Lemon Squeezy, LLC</strong>, che opera come Merchant of Record. I termini specifici di rimborso e annullamento sono disciplinati dalla piattaforma di pagamento e dalla legislazione applicabile.</p>
+    <ul>
+      <li>I pagamenti sono elaborati in modo sicuro da Lemon Squeezy (PCI-DSS compliant).</li>
+      <li>Il Titolare non riceve né memorizza dati di pagamento.</li>
+      <li>I prezzi sono espressi in EUR e possono includere IVA dove applicabile.</li>
+    </ul>
+
+    <hr />
+
+    <h2>5. Uso Accettabile</h2>
+    <p>L'utente si impegna a non utilizzare i servizi per:</p>
+    <ul>
+      <li>Attività illecite o fraudolente.</li>
+      <li>Violare la legge sulla privacy di terzi.</li>
+      <li>Tentare di disabilitare, sovraccaricare o compromettere l'infrastruttura.</li>
+      <li>Eludere rate limiting o misure di sicurezza.</li>
+    </ul>
+
+    <hr />
+
+    <h2>6. Zero Data Retention</h2>
+    <p>I documenti inviati a Factum API vengono elaborati in memoria volatile e mai persistenti. Nessun payload viene salvato su disco o nei log. Questo porta Zero Data Retention a default architetturale del servizio.</p>
+
+    <hr />
+
+    <h2>7. Proprietà Intellettuale</h2>
+    <p>Il codice sorgente di <strong>factum-fic</strong> è distribuito con licenza <strong>AGPL-3.0</strong>. La documentazione e i contenuti del sito sono di proprietà del Titolare. L'API Factum è un servizio commerciale, non open source.</p>
+
+    <hr />
+
+    <h2>8. Limitazione di Responsabilità</h2>
+    <p>I servizi sono forniti "così come sono", senza garanzie di alcun tipo. Il Titolare non sarà responsabile per danni indiretti o consequenziali, inclusi mancati profitti, derivanti dall'uso o dall'impossibilità di usare i servizi.</p>
+
+    <hr />
+
+    <h2>9. Modifiche ai Termini</h2>
+    <p>Il Titolare si riserva il diritto di modificare i presenti Termini in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina e, per i servizi a pagamento, notificate via email.</p>
+
+    <hr />
+
+    <h2>10. Legge Applicabile</h2>
+    <p>I presenti Termini sono regolati dalla legge italiana. Per qualsiasi controversia sarà competente il foro di Bergamo.</p>
+
+    <hr />
+
+    <h2>11. Contatti</h2>
+    <p>Per questioni relative ai presenti Termini, scrivi a <code>info@pyragogy.org</code>.</p>
+  </div>
+</LegalLayout>

@@ -7,12 +7,14 @@ export interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  noCookie?: boolean;
 }
 
 const {
   title = "Factum — AI Document Parser & factum-fic CLI",
   description = "Parsing e analisi logica per agenti IA. Gestione contabile forfettari via CLI. Zero compromessi.",
   ogImage = "/og-image.webp",
+  noCookie = false,
 } = Astro.props;
 ---
 
@@ -38,30 +40,137 @@ const {
     <link rel="alternate icon" href="/favicon.ico" />
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js" crossorigin="anonymous"></script>
+
+    {!noCookie && (
+      <>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.css" />
+        <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3.1.0/dist/cookieconsent.umd.js" defer></script>
+      </>
+    )}
   </head>
 
   <body class="min-h-screen bg-deep-900 text-zinc-100 font-sans antialiased">
     <slot />
 
-    <!-- Footer -->
-    <footer class="border-t border-zinc-800/60 bg-deep-950">
+    {!noCookie && (
+      <script type="module" data-cookieconsent="ignore">
+        if (typeof window.initCookieConsent === 'function') {
+          const cc = window.initCookieConsent();
+          cc.run({
+            guiOptions: {
+              consentModal: {
+                layout: 'cloud',
+                position: 'bottom center',
+                equalWeightButtons: true,
+                flipButtons: false,
+              },
+              preferencesModal: {
+                layout: 'box',
+                position: 'right',
+                equalWeightButtons: true,
+                flipButtons: false,
+              },
+            },
+            categories: {
+              necessary: {
+                enabled: true,
+                readOnly: true,
+              },
+              analytics: {
+                enabled: false,
+                readOnly: false,
+              },
+            },
+            language: {
+              default: 'it',
+              translations: {
+                it: {
+                  consentModal: {
+                    title: 'Questo sito utilizza cookie',
+                    description:
+                      'Utilizziamo cookie tecnici (essenziali) e analytics anonimi (Plausible self-hostato). I dati raccolti sono anonimi e non consentono la tua identificazione.',
+                    acceptAllBtn: 'Accetta tutti',
+                    acceptNecessaryBtn: 'Solo necessari',
+                    showPreferencesBtn: 'Personalizza',
+                    footer:
+                      '<a href="/privacy/">Privacy</a> · <a href="/cookies/">Cookie</a> · <a href="/terms/">Termini</a>',
+                  },
+                  preferencesModal: {
+                    title: 'Preferenze Cookie',
+                    acceptAllBtn: 'Accetta tutti',
+                    acceptNecessaryBtn: 'Solo necessari',
+                    savePreferencesBtn: 'Salva preferenze',
+                    closeIconLabel: 'Chiudi',
+                    sections: [
+                      {
+                        title: 'Cookie Necessari',
+                        description: 'Essenziali per il funzionamento del sito.',
+                        linkedCategory: 'necessary',
+                      },
+                      {
+                        title: 'Cookie Analytics',
+                        description:
+                          'Plausible self-hostato per statistiche anonime. Nessun dato personale.',
+                        linkedCategory: 'analytics',
+                      },
+                      {
+                        title: 'Maggiori informazioni',
+                        description:
+                          'Consulta la <a href="/privacy/">Privacy Policy</a> o scrivi a <a href="mailto:info@pyragogy.org">info@pyragogy.org</a>.',
+                      },
+                    ],
+                  },
+                },
+              },
+            },
+            darkMode: true,
+          });
+          window.__cc = cc;
+        }
+      </script>
+    )}
+
+    <!-- Footer professionale -->
+    <footer class="border-t border-zinc-800/60 bg-deep-900">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="flex flex-col items-center justify-between gap-5 py-10 sm:flex-row">
           <div class="flex items-center gap-5 font-mono text-sm text-zinc-600">
             <span class="text-factum-400">&copy; {new Date().getFullYear()}</span>
             <span class="text-zinc-700">|</span>
-            <a href="https://github.com/FTG-003/factum-fic" class="transition-colors hover:text-zinc-400">AGPL-3.0</a>
+            <span class="text-zinc-500">Fabrizio Terzi</span>
             <span class="text-zinc-700">|</span>
-            <a href="https://docs.factum.pyragogy.org/privacy" class="transition-colors hover:text-zinc-400">ZDR Policy</a>
-            <span class="text-zinc-700">|</span>
-            <a href="mailto:info@pyragogy.org" class="transition-colors hover:text-zinc-400">info@pyragogy.org</a>
+            <span class="text-zinc-500">P.IVA IT04923300166</span>
           </div>
           <div class="flex items-center gap-3 font-mono text-xs">
-
             <span class="rounded-xl border border-factum-400/20 px-3 py-1.5 text-factum-400">&empty; Zero Data Retention</span>
           </div>
         </div>
+        <div class="flex flex-col items-center justify-center gap-4 border-t border-zinc-800/40 py-6 sm:flex-row sm:gap-6">
+          <a href="/privacy/" class="font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-200">Privacy Policy</a>
+          <span class="hidden text-zinc-700 sm:inline">·</span>
+          <a href="/cookies/" class="font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-200">Cookie Policy</a>
+          <span class="hidden text-zinc-700 sm:inline">·</span>
+          <a href="/terms/" class="font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-200">Termini di Servizio</a>
+          <span class="hidden text-zinc-700 sm:inline">·</span>
+          <button id="manage-cookie-footer" class="font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-200" type="button">Gestisci Cookie</button>
+          <span class="hidden text-zinc-700 sm:inline">·</span>
+          <a href="https://www.linkedin.com/in/bergamohub001/" target="_blank" rel="noopener noreferrer" class="font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-200">LinkedIn</a>
+          <span class="hidden text-zinc-700 sm:inline">·</span>
+          <a href="mailto:info@pyragogy.org" class="font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-200">info@pyragogy.org</a>
+        </div>
+        <div class="pb-6 text-center">
+          <p class="font-mono text-xs text-zinc-600">Pagamenti e fatturazione gestiti in sicurezza da Lemon Squeezy (Merchant of Record).</p>
+        </div>
       </div>
     </footer>
+
+    {!noCookie && (
+      <script type="module">
+        document.getElementById('manage-cookie-footer')?.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.__cc?.showPreferences?.();
+        });
+      </script>
+    )}
   </body>
 </html>

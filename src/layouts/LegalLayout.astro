@@ -1,0 +1,109 @@
+---
+// === LegalLayout — for privacy/cookies/terms pages ===
+import Base from "./Base.astro";
+import Navbar from "../components/Navbar.astro";
+
+export interface Props {
+  title: string;
+  description?: string;
+  lastUpdated?: string;
+}
+const { title, description, lastUpdated } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <Navbar showPricing={false} />
+  <div class="mx-auto max-w-3xl px-6 pt-32 pb-24 lg:px-8 md:pt-44">
+    <div class="prose-invert">
+      <div class="mb-8">
+        <p class="mb-3 font-mono text-xs font-medium uppercase tracking-[0.3em] text-factum-400">/legale</p>
+        <h1 class="font-serif-display text-3xl text-zinc-100 sm:text-4xl">{title}</h1>
+        {lastUpdated && (
+          <p class="mt-3 font-mono text-sm text-zinc-600">Ultimo aggiornamento: {lastUpdated}</p>
+        )}
+      </div>
+      <div class="space-y-6">
+        <slot />
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style is:global>
+  main, section {
+    color: #9aa1ab;
+  }
+
+  /* Typography per contenuti legali */
+  .legal-body h1 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    color: #e8e6e1;
+    font-size: 1.875rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-body h1:first-child { margin-top: 0; }
+  .legal-body h2 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    color: #e8e6e1;
+    font-size: 1.375rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-top: 2rem;
+    margin-bottom: 0.6rem;
+  }
+  .legal-body h3 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: #e8e6e1;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .legal-body p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #9aa1ab;
+    margin-bottom: 1rem;
+  }
+  .legal-body ul, .legal-body ol {
+    margin: 0 0 1.25rem 1.25rem;
+    list-style: disc;
+    color: #9aa1ab;
+    line-height: 1.7;
+  }
+  .legal-body li { margin-bottom: 0.4rem; }
+  .legal-body li::marker { color: #c2703d; }
+  .legal-body strong {
+    color: #e8e6e1;
+    font-weight: 600;
+  }
+  .legal-body a {
+    color: #c2703d;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: rgba(194,112,61,0.4);
+    transition: color .15s;
+  }
+  .legal-body a:hover { color: #e8e6e1; }
+  .legal-body code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: #e8e6e1;
+    background: #141821;
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    border: 1px solid #1f2530;
+  }
+  .legal-body hr {
+    border: 0;
+    border-top: 1px solid #1f2530;
+    margin: 2rem 0;
+  }
+  html.dark .legal-body { color: #9aa1ab; }
+</style>

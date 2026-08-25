@@ -20,14 +20,14 @@ const { showPricing = true } = Astro.props;
 
     <!-- Desktop -->
     <div class="hidden items-center gap-8 md:flex">
-      <a href="https://docs.factum.pyragogy.org" class="font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-200">Docs</a>
-      <a href="https://github.com/FTG-003/factum-fic" class="font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-200">GitHub</a>
+      <a href="https://docs.factum.pyragogy.org" class="font-mono text-sm font-medium text-zinc-200 transition-colors hover:text-factum-400">Docs</a>
+      <a href="https://github.com/FTG-003/factum-fic" class="font-mono text-sm font-medium text-zinc-200 transition-colors hover:text-factum-400">GitHub</a>
       {showPricing && (
-        <a href="#pricing" class="font-mono text-sm text-zinc-500 transition-colors hover:text-zinc-200">Prezzi</a>
+        <a href="#pricing" class="font-mono text-sm font-medium text-zinc-200 transition-colors hover:text-factum-400">Prezzi</a>
       )}
       <div class="flex items-center gap-3">
         <a href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333"
-           class="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 px-4 py-2 font-mono text-sm text-zinc-400 transition-all hover:border-zinc-600 hover:text-zinc-200">
+           class="inline-flex items-center gap-1.5 rounded-lg border border-zinc-700 px-4 py-2 font-mono text-sm text-zinc-200 transition-all hover:border-factum-400/50 hover:text-zinc-100">
           API Key
         </a>
         <a href="#cli"
@@ -61,13 +61,13 @@ const { showPricing = true } = Astro.props;
     x-transition:leave-end="opacity-0 -translate-y-4"
   >
     <div class="space-y-2 px-6 py-5">
-      <a href="https://docs.factum.pyragogy.org" class="block rounded-lg px-4 py-3 font-mono text-sm text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200" @click="mobileOpen = false">Docs</a>
-      <a href="https://github.com/FTG-003/factum-fic" class="block rounded-lg px-4 py-3 font-mono text-sm text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200" @click="mobileOpen = false">GitHub</a>
+      <a href="https://docs.factum.pyragogy.org" class="block rounded-lg px-4 py-3 font-mono text-sm font-medium text-zinc-200 hover:bg-zinc-900 hover:text-factum-400" @click="mobileOpen = false">Docs</a>
+      <a href="https://github.com/FTG-003/factum-fic" class="block rounded-lg px-4 py-3 font-mono text-sm font-medium text-zinc-200 hover:bg-zinc-900 hover:text-factum-400" @click="mobileOpen = false">GitHub</a>
       {showPricing && (
-        <a href="#pricing" class="block rounded-lg px-4 py-3 font-mono text-sm text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200" @click="mobileOpen = false">Prezzi</a>
+        <a href="#pricing" class="block rounded-lg px-4 py-3 font-mono text-sm font-medium text-zinc-200 hover:bg-zinc-900 hover:text-factum-400" @click="mobileOpen = false">Prezzi</a>
       )}
       <hr class="my-4 border-zinc-800" />
-      <a href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333" class="flex items-center gap-2 rounded-lg border border-zinc-800 px-4 py-3 font-mono text-sm text-zinc-400" @click="mobileOpen = false">API Key</a>
+      <a href="https://pyragogy.lemonsqueezy.com/checkout/buy/d616a09d-75b3-48de-b41b-d2cc19589333" class="flex items-center gap-2 rounded-lg border border-zinc-700 px-4 py-3 font-mono text-sm text-zinc-200" @click="mobileOpen = false">API Key</a>
       <a href="#cli" class="flex items-center gap-2 rounded-lg bg-factum-400/10 px-4 py-3 font-mono text-sm text-factum-400" @click="mobileOpen = false">Installa CLI</a>
     </div>
   </div>
